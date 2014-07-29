@@ -1,2 +1,10 @@
-body{background-color:#e6e6e6}div.container{margin:0;max-width:none!important;min-width:1200px;width:1200px}div.wide-container{min-width:100%;width:100%}.col-sidebar{padding-right:96px;width:240px}.col-feed{margin-left:48px;padding-left:48px;padding-right:48px}.col-top{padding-left:48px;padding-right:48px}a{color:#000;text-decoration:underline}a:hover{color:red}.content{background-color:#fff;background-image:url(../img/blood-crop.png);background-repeat:no-repeat no-repeat;padding:24px 12px}.border-bottom{border-bottom:1px solid #000}.main-sidebar{width:260px}.main-sidebar .sidebar-block{margin-bottom:20px;padding-bottom:20px}.main-sidebar .manifesto{font-size:1.2em;font-weight:700;line-height:1.6em}.main-sidebar .menu ul{list-style:none;margin-left:0;padding-left:0}.main-sidebar .menu ul li{font-size:2.3em;font-weight:700;line-height:1.4}.main-sidebar .menu ul li a{color:#000}.main-sidebar .tags .text-label{font-weight:700;line-height:2}.main-sidebar .tags .text{font-weight:700}.main-sidebar .tags .text a{color:#000}.feed .article-item{border-bottom:1px solid #e6e6e6;margin:0 0 24px 0;padding:0 0 24px 0}.feed .article-item .title{font-size:18px}.feed .article-item .information{font-size:12px}.feed .article-item .body{margin:24px 0}.top-rated .text-label{font-weight:700;line-height:2;margin-bottom:6px}.top-rated .top-rated-item{margin:0 0 6px 0;padding:0 0 6px 0}.top-rated .top-rated-item .title{font-size:12px}.top-rated .top-rated-item .information{font-size:10px}.top-rated .top-rated-item .body{margin-top:6px}.portfolio .thumbnail{border:0;box-shadow:none;padding-bottom:96px}
-/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
+div.container {
+  margin: 0;
+  max-width: none !important;
+  min-width: 1200px;
+  width: 1200px;
+}
+div.wide-container {
+  min-width: 100%;
+  width: 100%;
+}
