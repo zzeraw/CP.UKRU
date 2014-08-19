@@ -35,9 +35,11 @@ require_once('include/generate_email.php');
 <div class="header">
     <div class="container">
         <div class="logo center">
-            <div class="title red">Евгения Михайлова</div>
-            <div class="description red">Изготовление десертов на заказ</div>
-            <div class="contact-phone red">+7 906 134 13 95</div>
+            <a href="/" title="Главная страница">
+                <div class="title red">Евгения Михайлова</div>
+                <div class="description red">Приготовление десертов на заказ</div>
+                <div class="contact-phone red">+7 XXX XX XX XX</div>
+            </a>
             <!--<img src="img/venzel.png" alt=""/>-->
         </div>
     </div>
@@ -54,12 +56,15 @@ require_once('include/generate_email.php');
                 </div>
                 <div class="col-xs-8">
                     <div class="greeting">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam corporis cumque
-                            deleniti dolorem doloremque ducimus, facilis laboriosam, laborum nemo non omnis
-                            perferendis quia quos vero vitae? Earum laboriosam nihil unde!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam corporis cumque
-                            deleniti dolorem doloremque ducimus, facilis laboriosam, laborum nemo non omnis
-                            perferendis quia quos vero vitae? Earum laboriosam nihil unde!</p>
+                        <p><strong>Привет, меня зовут Женя!</strong></p>
+
+                        <p>Я очень люблю готовить, а еще больше я люблю готовить десерты. Раньше я готовила дома, но теперь у меня есть свой бар, где я могу полностью посвятить себя любимому делу. И мне очень хотелось бы поделиться результатом с вами.</p>
+
+                        <p>Мои десерты вкусные, оригинальные и из натуральных продуктов.</p>
+
+                        <p>Вот примеры моих работ:</p>
+
+                        <br>
                     </div>
 
                     <div>
@@ -122,7 +127,7 @@ require_once('include/generate_email.php');
                         <form role="form" method="POST">
                             <div class="form-group">
                                 <input type="text" name="name" class="form-control name"
-                                       placeholder="Ваше имя" data-container="body" data-placement="left"
+                                       placeholder="Ваше имя" data-container="body" data-placement="right"
                                        data-content=""
                                        value="<?=isset($_POST['name']) ? $_POST['name'] : ''?>"
                                     >
@@ -130,7 +135,7 @@ require_once('include/generate_email.php');
                             <div class="form-group">
                                 <input type="phone" name="phone" class="form-control phone"
                                        placeholder="Ваш телефон" data-container="body"
-                                       data-placement="left" data-content=""
+                                       data-placement="right" data-content=""
                                        value="<?=isset($_POST['phone']) ? $_POST['phone'] : ''?>"
                                     >
                             </div>
@@ -233,7 +238,11 @@ require_once('include/generate_email.php');
 </div>
 
 <div class="footer">
-
+    <div class="container">
+        <div class="copyright">
+            &copy; <?=date('Y')?>
+        </div>
+    </div>
 </div>
 
 </body>
