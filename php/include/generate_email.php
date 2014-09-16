@@ -27,9 +27,9 @@ if (isset($_POST['send_form'])) {
 
         $mail_flag = sendMessage(
             array(
-                'pv.danilov.dev@yandex.ru',
+
             ),
-            'pv.danilov.dev@yandex.ru',
+            '',
             $subject,
             $message
         );
