@@ -20,10 +20,10 @@ class DefaultController extends FrontEndController
             throw new CHttpException(404, 'Запрашиваемая страница не найдена.');
         }
 
-        $this->breadcrumbs[] = array(
-            'route' => false,
-            'title' => $this->page->title,
-        );
+//        $this->breadcrumbs[] = array(
+//            'route' => false,
+//            'title' => $this->page->title,
+//        );
 
         if (!empty($this->page->template)) {
             $this->layout = '//templates/' . $this->page->template;

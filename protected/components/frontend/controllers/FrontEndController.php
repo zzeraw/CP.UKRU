@@ -23,14 +23,6 @@ Yii::import('application.modules.gallery.models.*');
 Yii::import('application.modules.gallery.models._forms.*');
 Yii::import('application.modules.gallery.models._base.*');
 
-Yii::import('application.modules.catalog.*');
-Yii::import('application.modules.catalog.models.*');
-Yii::import('application.modules.catalog.models._forms.*');
-Yii::import('application.modules.catalog.models._base.*');
-Yii::import('application.modules.catalog.components.*');
-Yii::import('application.modules.catalog.components.custom.*');
-Yii::import('application.modules.catalog.components.widgets.*');
-
 
 class FrontEndController extends BaseController
 {
@@ -59,12 +51,14 @@ class FrontEndController extends BaseController
                 'class' => 'MyInlineWidgetsBehavior',
                 'location' => array(
                     'application.components.frontend.widgets',
+                    'application.modules.banners.components.widgets',
                     'application.modules.forms.components.widgets',
                     'application.modules.gallery.components.widgets',
                 ),
                 'startBlock' => '{{w:',
                 'endBlock' => '}}',
                 'widgets' => array(
+                    'BannersWidget',
                     'GalleryBlock',
                     'CurrentYear',
                     'HomeUrl',

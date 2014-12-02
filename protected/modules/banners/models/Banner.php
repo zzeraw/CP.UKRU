@@ -5,7 +5,6 @@
  *
  * The followings are the available columns in table 'banners':
  * @property integer $id
- * @property integer $club_id
  * @property string $title
  * @property string $link
  * @property string $image
@@ -47,11 +46,11 @@ class Banner extends BaseActiveRecord
                 // 'image_path' => ,
                 // 'image_field' => ,
                 'original_resize' => true,
-                'original_resize_width' => 950,
+                'original_resize_width' => 960,
                 'original_resize_height' => false,
                 'original_crop' => true,
-                'original_crop_width' => 950,
-                'original_crop_height' => 396,
+                'original_crop_width' => 960,
+                'original_crop_height' => 400,
                 'thumb' => true,
                 'thumb_width' => 400,
                 'thumb_height' => 167,
@@ -85,7 +84,7 @@ class Banner extends BaseActiveRecord
                 'required',
             ),
             array(
-                'club_id, nn, created_user, modified_user, active',
+                'nn, created_user, modified_user, active',
                 'numerical',
                 'integerOnly' => true,
             ),
@@ -136,7 +135,7 @@ class Banner extends BaseActiveRecord
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array(
-                'id, club_id, title, link, image, image_attr_title, image_attr_alt, nn, created_ip, created_date, created_user, created_username, modified_ip, modified_date, modified_user, modified_username, active',
+                'id, title, link, image, image_attr_title, image_attr_alt, nn, created_ip, created_date, created_user, created_username, modified_ip, modified_date, modified_user, modified_username, active',
                 'safe',
                 'on' => 'search'
             ),
@@ -151,7 +150,6 @@ class Banner extends BaseActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'club' => array(self::BELONGS_TO, 'ClubItem', 'club_id'),
         );
     }
 
@@ -162,7 +160,6 @@ class Banner extends BaseActiveRecord
     {
         return array(
             'id' => 'ID',
-            'club_id' => 'Club',
             'title' => 'Title',
             'link' => 'Link',
             'image' => 'Image',
@@ -200,7 +197,6 @@ class Banner extends BaseActiveRecord
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('club_id', $this->club_id);
         $criteria->compare('title', $this->title, true);
         $criteria->compare('link', $this->link, true);
         $criteria->compare('image', $this->image, true);

@@ -7,8 +7,6 @@
 
         <?=$this->decodeWidgets($this->loadBlockBody('main_menu'));?>
 
-        <div class="container white-blank">
-
             <?php if (isset($this->breadcrumbs)) : ?>
                 <?php $this->widget('MyBreadcrumbs', array(
                     'homeLink' => CHtml::link('Главная', '/'),
@@ -43,8 +41,6 @@
                     <?=$this->decodeWidgets($this->page->end_body)?>
                 </div>
             <?php endif; ?>
-
-        </div>
 
     </div>
 

@@ -7,7 +7,7 @@
             <div class="thumbnail" style="<?=(!empty($height) ? 'height: ' . $height . 'px' : '')?>">
 
                 <?php if ($modal === true) : ?>
-                    <a href="/uploads/<?=$photo->image?>" rel="<?=$widget_id?>" class="fancybox-image" title="<?=$photo->title?>">
+                    <a href="/uploads/<?=$photo->image?>" rel="<?=$widget_id?>" class="fancybox-image" title="<?=$photo->title?>" style="overflow: hidden">
                 <?php endif; ?>
 
                     <img
@@ -15,8 +15,7 @@
                         src="/uploads/<?=$photo->image?>"
                         alt="<?=$photo->title?>"
                         title="<?=$photo->title?>"
-<!--                        style="--><?//=$style?><!--"-->
-                        >
+                    >
 
                 <?php if ($captions == 'on') : ?>
                     <div class="thumbnail-caption">

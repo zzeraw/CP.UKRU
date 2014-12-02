@@ -1,20 +1,11 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Цитрус</a>
+            <a class="navbar-brand" href="/">Ukrushka</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div>
             <ul class="nav navbar-nav">
-                <li><a href="<?=Yii::app()->createUrl('timeboard/admin/timeboard/index')?>">Расписание</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Контент <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -28,24 +19,14 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Каталог <span class="caret"></span></a>
+                    <a href="<?=Yii::app()->createUrl('')?>" class="dropdown-toggle" data-toggle="dropdown">Фотографии <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li class="header-label">Товары</li>
-                        <li><a href="<?=Yii::app()->createUrl('catalog/admin/catalogItems/create')?>">Добавить товар</a></li>
-                        <li><a href="<?=Yii::app()->createUrl('catalog/admin/catalogItems/import')?>">Импорт товара</a></li>
-                        <li><a href="<?=Yii::app()->createUrl('catalog/admin/catalogItems/index')?>">Список товаров</a></li>
-                        <li class="divider"></li>
-                        <li class="header-label">Группы товаров</li>
-                        <li><a href="<?=Yii::app()->createUrl('catalog/admin/catalogGroups/create')?>">Добавить группу</a></li>
-                        <li><a href="<?=Yii::app()->createUrl('catalog/admin/catalogGroups/index')?>">Список групп</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="<?=Yii::app()->createUrl('')?>" class="dropdown-toggle" data-toggle="dropdown">Мультимедиа <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
+                        <li class="header-label">Баннеры</li>
+                        <li><a href="<?=Yii::app()->createUrl('banners/admin/banners/create')?>">Добавить баннер</a></li>
+                        <li><a href="<?=Yii::app()->createUrl('banners/admin/banners/index')?>">Список баннеров</a></li>
                         <li class="header-label">Фотографии</li>
                         <li><a href="<?=Yii::app()->createUrl('gallery/admin/galleryPhotos/create')?>">Добавить фото</a></li>
-                        <li><a href="<?=Yii::app()->createUrl('gallery/admin/galleryPhotos/index')?>">Просмотр фотографий</a></li>
+                        <li><a href="<?=Yii::app()->createUrl('gallery/admin/galleryPhotos/index')?>">Список фотографий</a></li>
                         <li class="header-label">Альбомы фотографий</li>
                         <li><a href="<?=Yii::app()->createUrl('gallery/admin/galleryAlbums/create')?>">Добавить альбом</a></li>
                         <li><a href="<?=Yii::app()->createUrl('gallery/admin/galleryAlbums/index')?>">Список альбомов</a></li>

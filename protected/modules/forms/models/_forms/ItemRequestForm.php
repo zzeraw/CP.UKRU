@@ -45,7 +45,7 @@ class ItemRequestForm extends BaseFormModel
         $from = Yii::app()->params['fromEmail'];
         $email = Yii::app()->params['managerEmail'];
 
-        $subject = 'Поступила заявка c сайта www.citrusfit.ru';
+        $subject = 'Поступила заявка c сайта www.ukrushka.ru';
 
         $message = $main_message . '<br><br>';
 

@@ -27,7 +27,18 @@ $this->menu = array(
     'dataProvider' => $model->search(),
     'selectableRows' => 0,
     'itemsCssClass' => 'table table-striped',
+    'rowCssClassExpression' => '($data->active == 1) ? "row-on" : "row-off"',
     'columns' => array(
+        array(
+            'class' => 'DataColumn',
+            'evaluateHtmlOptions' => true,
+            'type' => 'html',
+            'htmlOptions' => array(
+                'class' => '($data->active == 1) ? "td-active" : "td-inactive"',
+                'title' => '($data->active == 1) ? "Выключить" : "Включить"',
+            ),
+            'value' => 'CHtml::link(($data->active == 1) ? "<span class=\'glyphicon glyphicon-off\'></span>" : "<span class=\'glyphicon glyphicon-play\'></span>", array(($data->active == 1) ? "turnOff" : "turnOn", "id" => $data->id))',
+        ),
         'id',
         array(
             'name' => 'image',

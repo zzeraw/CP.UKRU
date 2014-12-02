@@ -47,7 +47,7 @@ class GalleryBlock extends CWidget
                 $ids = str_replace(' ', '', $this->id);
                 $ids_array = explode(',', $ids);
 
-                $photos = GalleryPhoto::model()->findAllByPkArray($ids_array, $this->order, $this->limit);
+                $photos = GalleryPhoto::model()->active()->findAllByPkArray($ids_array, $this->order, $this->limit);
 
                 $this->render('galleryListPhotos', array(
 //                    'height' => $this->height,
@@ -64,7 +64,7 @@ class GalleryBlock extends CWidget
             }
         } elseif (!empty($this->album)) {
 
-            $photos = GalleryPhoto::model()->findAllByAlbumTitle($this->album, $this->order, $this->limit);
+            $photos = GalleryPhoto::model()->active()->findAllByAlbumTitle($this->album, $this->order, $this->limit);
 
 //            var_dump($photos);
 

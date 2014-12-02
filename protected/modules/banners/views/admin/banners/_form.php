@@ -16,17 +16,6 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="form-group">
-		<?php echo $form->labelEx($model,'club_id'); ?>
-		<?php
-			echo $form->dropDownList($model, 'club_id',
-				CHtml::listData(ClubItem::model()->findAll(array('order' => 'title')),'id','title'),
-				array('empty' => 'Для всех клубов', 'class' => 'form-control input-xlarge')
-			);
-		?>
-		<?php echo $form->error($model,'club_id'); ?>
-	</div>
-
-	<div class="form-group">
 		<?php echo $form->labelEx($model,'title'); ?>
 		<?php echo $form->textField($model,'title', array('class' => 'form-control input-xlarge')); ?>
 		<?php echo $form->error($model,'title'); ?>
@@ -47,7 +36,7 @@
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'image'); ?>
 		<?php echo $form->fileField($model,'image'); ?>
-		<p class="help-block">Оптимальный размер баннера - 640px на 270px.</p>
+		<p class="help-block">Оптимальный размер баннера - 960px на 400px.</p>
 		<?php echo $form->error($model,'image'); ?>
 	</div>
 

@@ -5,7 +5,6 @@
  *
  * The followings are the available columns in table 'form_requests':
  * @property integer $id
- * @property integer $club_id
  * @property string $fio
  * @property string $phone
  * @property string $description
@@ -55,11 +54,6 @@ class FormRequest extends BaseActiveRecord
 				'required',
 			),
 			array(
-				'club_id',
-				'numerical',
-				'integerOnly' => true,
-			),
-			array(
 				'fio, created_ip',
 				'length',
 				'max' => 300,
@@ -86,7 +80,7 @@ class FormRequest extends BaseActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array(
-				'id, club_id, fio, phone, description, created_ip, created_date',
+				'id, fio, phone, description, created_ip, created_date',
 				'safe',
 				'on' => 'search'
 			),
@@ -101,7 +95,6 @@ class FormRequest extends BaseActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'club' => array(self::BELONGS_TO, 'ClubItems', 'club_id'),
 		);
 	}
 
@@ -112,7 +105,6 @@ class FormRequest extends BaseActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'club_id' => 'Club',
 			'fio' => 'Fio',
 			'phone' => 'Phone',
 			'description' => 'Description',
@@ -140,7 +132,6 @@ class FormRequest extends BaseActiveRecord
 		$criteria = new CDbCriteria;
 
 		$criteria->compare('id', $this->id);
-		$criteria->compare('club_id', $this->club_id);
 		$criteria->compare('fio', $this->fio, true);
 		$criteria->compare('phone', $this->phone, true);
 		$criteria->compare('description', $this->description, true);

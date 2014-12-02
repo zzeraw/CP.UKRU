@@ -11,7 +11,6 @@
  * @property string $begin_body
  * @property string $end_body
  * @property integer $nn
- * @property integer $club_id
  * @property integer $show_in_menu
  * @property integer $show_title
  * @property string $template
@@ -77,7 +76,7 @@ class Page extends BaseActiveRecord
 				'required',
 			),
 			array(
-				'nn, club_id, show_in_menu, show_title, meta_index, created_user, modified_user, active',
+				'nn, show_in_menu, show_title, meta_index, created_user, modified_user, active',
 				'numerical',
 				'integerOnly' => true,
 			),
@@ -102,7 +101,7 @@ class Page extends BaseActiveRecord
 				'max' => 500,
 			),
 			array(
-				'module, alias, title, begin_body, end_body, nn, club_id, show_in_menu, show_title, template, meta_index, meta_title, meta_keywords, meta_description',
+				'module, alias, title, begin_body, end_body, nn, show_in_menu, show_title, template, meta_index, meta_title, meta_keywords, meta_description',
 				'safe',
 			),
 			// The following rule is used by search().
@@ -123,7 +122,6 @@ class Page extends BaseActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'club' => array(self::BELONGS_TO, 'ClubItem', 'club_id'),
 		);
 	}
 
@@ -140,7 +138,6 @@ class Page extends BaseActiveRecord
 			'begin_body' => 'Begin Body',
 			'end_body' => 'End Body',
 			'nn' => 'Nn',
-			'club_id' => 'Club',
 			'show_in_menu' => 'Show In Menu',
 			'show_title' => 'Show Title',
 			'template' => 'Template',

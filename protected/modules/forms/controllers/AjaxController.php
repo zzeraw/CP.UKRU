@@ -24,10 +24,10 @@ class AjaxController extends FrontEndController
             $model->attributes = $_POST['ItemRequestForm'];
 
             if ($model->validate()) {
-                if ($model->send('С сайта поступила заявка на товар.')) {
+                if ($model->send('С сайта поступила заявка на десерт.')) {
                     $status = array(
                         'status' => 'success',
-                        'message' => 'Ваша заявка успешно отправлена. В самое ближайшее время с вами свяжется наш менеджер.',
+                        'message' => 'Ваша заявка успешно отправлена. Я свяжусь с вами в самое ближайшее время.',
                     );
                 } else {
                     // TODO: Логирование ошибок!

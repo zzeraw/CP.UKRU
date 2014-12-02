@@ -3,15 +3,15 @@
 $environment = 'development';
 
 switch (dirname(__FILE__)) {
-    case '/Users/paveldanilov/Sites/bristol':
-    case 'd:\OpenServer\domains\sites.dev\bristol':
-    case 'D:\OpenServer\domains\sites.dev\bristol':
+    case '/Users/paveldanilov/Sites/cakes':
+    case 'd:\OpenServer\domains\sites.dev\cakes':
+    case 'D:\OpenServer\domains\sites.dev\cakes':
         $yii = dirname(__FILE__) . '/_framework/1.1.15/yii.php';
         $protected = '/protected';
         break;
     default:
         $environment = 'production';
-        $yii = dirname(__FILE__) . '/../../frameworks/Yii/1.1.15/framework/yiilite.php';
+        $yii = dirname(__FILE__) . '/../../frameworks/Yii/1.1.15/yiilite.php';
         $protected = '/../app/protected';
         break;
 }
