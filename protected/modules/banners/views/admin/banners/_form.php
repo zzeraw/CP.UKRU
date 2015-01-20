@@ -36,7 +36,7 @@
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'image'); ?>
 		<?php echo $form->fileField($model,'image'); ?>
-		<p class="help-block">Оптимальный размер баннера - 960px на 400px.</p>
+		<p class="help-block">Оптимальный размер баннера - <?=Banner::model()->banner_width?>px на <?=Banner::model()->banner_height?>px.</p>
 		<?php echo $form->error($model,'image'); ?>
 	</div>
 
@@ -50,6 +50,12 @@
 		<?php echo $form->labelEx($model,'image_attr_alt'); ?>
 		<?php echo $form->textField($model,'image_attr_alt', array('class' => 'form-control input-xlarge')); ?>
 		<?php echo $form->error($model,'image_attr_alt'); ?>
+	</div>
+
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'body'); ?>
+		<?php echo $form->textArea($model,'body', array('class' => 'form-control input-xlarge tinymce')); ?>
+		<?php echo $form->error($model,'body'); ?>
 	</div>
 
 	<div class="buttons">

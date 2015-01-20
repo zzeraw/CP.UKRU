@@ -10,13 +10,14 @@
  * @property string $image
  * @property string $image_attr_title
  * @property string $image_attr_alt
+ * @property string $body
  * @property integer $nn
  * @property string $created_ip
- * @property string $created_date
+ * @property string $created_datetime
  * @property integer $created_user
  * @property string $created_username
  * @property string $modified_ip
- * @property string $modified_date
+ * @property string $modified_datetime
  * @property integer $modified_user
  * @property string $modified_username
  * @property integer $active
@@ -26,6 +27,9 @@
  */
 class Banner extends BaseActiveRecord
 {
+    public $image_width = 950;
+    public $image_height = 396;
+
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
@@ -46,11 +50,11 @@ class Banner extends BaseActiveRecord
                 // 'image_path' => ,
                 // 'image_field' => ,
                 'original_resize' => true,
-                'original_resize_width' => 960,
+                'original_resize_width' => $this->image_width,
                 'original_resize_height' => false,
                 'original_crop' => true,
-                'original_crop_width' => 960,
-                'original_crop_height' => 400,
+                'original_crop_width' => $this->image_width,
+                'original_crop_height' => $this->image_height,
                 'thumb' => true,
                 'thumb_width' => 400,
                 'thumb_height' => 167,
@@ -62,12 +66,12 @@ class Banner extends BaseActiveRecord
             'IpBehavior' => array(
                 'class' => 'IpBehavior',
             ),
-            // 'UserBehavior' => array(
-            //     'class' => 'UserBehavior',
-            // ),
-            // 'UsernameBehavior' => array(
-            //     'class' => 'UsernameBehavior',
-            // ),
+             'UserBehavior' => array(
+                 'class' => 'UserBehavior',
+             ),
+             'UsernameBehavior' => array(
+                 'class' => 'UsernameBehavior',
+             ),
         );
     }
 
@@ -109,7 +113,7 @@ class Banner extends BaseActiveRecord
                 'max' => 200,
             ),
             array(
-                'created_date, modified_date',
+                'body, created_datetime, modified_datetime',
                 'safe',
             ),
             array(
@@ -129,13 +133,13 @@ class Banner extends BaseActiveRecord
                 'on' => 'update',
             ),
             array(
-                'club_id, title, link, image_attr_title, image_attr_alt',
+                'title, link, image_attr_title, image_attr_alt',
                 'safe',
             ),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array(
-                'id, title, link, image, image_attr_title, image_attr_alt, nn, created_ip, created_date, created_user, created_username, modified_ip, modified_date, modified_user, modified_username, active',
+                'id, title, link, image, image_attr_title, image_attr_alt, nn, created_ip, created_datetime, created_user, created_username, modified_ip, modified_datetime, modified_user, modified_username, active',
                 'safe',
                 'on' => 'search'
             ),
@@ -150,6 +154,7 @@ class Banner extends BaseActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'club' => array(self::BELONGS_TO, 'ClubItem', 'club_id'),
         );
     }
 
@@ -165,13 +170,14 @@ class Banner extends BaseActiveRecord
             'image' => 'Image',
             'image_attr_title' => 'Image Attr Title',
             'image_attr_alt' => 'Image Attr Alt',
+            'body' => 'Body',
             'nn' => 'Nn',
             'created_ip' => 'Created Ip',
-            'created_date' => 'Created Date',
+            'created_datetime' => 'Created Date',
             'created_user' => 'Created User',
             'created_username' => 'Created Username',
             'modified_ip' => 'Modified Ip',
-            'modified_date' => 'Modified Date',
+            'modified_datetime' => 'Modified Date',
             'modified_user' => 'Modified User',
             'modified_username' => 'Modified Username',
             'active' => 'Active',
@@ -202,13 +208,14 @@ class Banner extends BaseActiveRecord
         $criteria->compare('image', $this->image, true);
         $criteria->compare('image_attr_title', $this->image_attr_title, true);
         $criteria->compare('image_attr_alt', $this->image_attr_alt, true);
+        $criteria->compare('body', $this->body, true);
         $criteria->compare('nn', $this->nn);
         $criteria->compare('created_ip', $this->created_ip, true);
-        $criteria->compare('created_date', $this->created_date, true);
+        $criteria->compare('created_datetime', $this->created_datetime, true);
         $criteria->compare('created_user', $this->created_user);
         $criteria->compare('created_username', $this->created_username, true);
         $criteria->compare('modified_ip', $this->modified_ip, true);
-        $criteria->compare('modified_date', $this->modified_date, true);
+        $criteria->compare('modified_datetime', $this->modified_datetime, true);
         $criteria->compare('modified_user', $this->modified_user);
         $criteria->compare('modified_username', $this->modified_username, true);
         $criteria->compare('active', $this->active);

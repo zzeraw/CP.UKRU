@@ -3,10 +3,10 @@
 $environment = 'development';
 
 switch (dirname(__FILE__)) {
-    case '/Users/paveldanilov/Sites/cakes':
-    case 'd:\OpenServer\domains\sites.dev\cakes':
-    case 'D:\OpenServer\domains\sites.dev\cakes':
-        $yii = dirname(__FILE__) . '/_framework/1.1.15/yii.php';
+    case '/Users/paveldanilov/Sites/sites.dev/cakes2':
+    case 'd:\OpenServer\domains\sites.dev\cakes2':
+    case 'D:\OpenServer\domains\sites.dev\cakes2':
+        $yii = dirname(__FILE__) . '/_framework/1.1.16/yii.php';
         $protected = '/protected';
         break;
     default:
@@ -17,8 +17,8 @@ switch (dirname(__FILE__)) {
 }
 
 if (($environment == 'development') || ($environment == 'test')) {
-   // define('YII_DEBUG', false);
-   // error_reporting(0);
+//    define('YII_DEBUG', false);
+//    error_reporting(0);
     error_reporting(E_ALL);
     defined('YII_DEBUG') or define('YII_DEBUG', true);
     defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', 3);

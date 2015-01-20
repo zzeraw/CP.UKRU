@@ -4,7 +4,8 @@ return CMap::mergeArray(
     require_once(dirname(__FILE__) . '/main.php'),
     array(
         // стандартный контроллер
-        'defaultController' => 'pages/default/view/',
+        'defaultController' => 'pages/default/view',
+        // 'defaultController' => 'site/underConstruction/',
 
         'import' => array(
             'application.components.frontend.*.*',
@@ -33,7 +34,7 @@ return CMap::mergeArray(
                             'css/bootstrap.min.css',
                             'css/bootstrap-theme.min.css',
                         ),
-                        'depends' =>array('jquery'),
+                        'depends' => array('jquery'),
                     ),
                     'fancybox' => array(
                         'baseUrl' => '',
@@ -44,6 +45,16 @@ return CMap::mergeArray(
                             'css/jquery.fancybox.css',
                         ),
                         'depends' =>array('jquery'),
+                    ),
+                    'modernizr' => array(
+                        'baseUrl' => '',
+                        'js' => array('js/modernizr.js'),
+                    ),
+                    'foundation5' => array(
+                        'baseUrl' => '',
+                        'js' => array('js/foundation/foundation.min.js'),
+                        'css' => array('css/foundation.min.css'),
+                        'depends' => array('jquery'),
                     ),
                     'my-js' => array(
                         'baseUrl' => 'js/',
@@ -59,17 +70,24 @@ return CMap::mergeArray(
                 ),
             ),
 
-           'urlManager' => array(
-               'urlFormat' => 'path',
-               'showScriptName' => false,
-               'urlSuffix' => '',
-               'rules' => array(
+            'urlManager' => array(
+                'urlFormat' => 'path',
+                'showScriptName' => false,
+                'urlSuffix' => '',
+                'rules' => array(
+                    array('sitemap/default/index', 'pattern'=>'sitemap.xml', 'urlSuffix'=>''),
+
+//                    'forms/ajax/<action:\d+>/*' => 'forms/ajax/<action>',
                     '<module:(forms)>/<controller:(ajax)>/<action:\w+>' => '<module>/<controller>/<action>',
 
-                    '<alias:[\w\-]+>' => array('pages/default/view/', 'alias'=>'<alias>'),
-                    '/' => array('pages/default/view/'),
-               ),
-           ),
+                    // 'catalog' => 'catalog/default/index',
+                    // 'catalog/<id:\d+>' => 'catalog/default/view/',
+
+                    // '<alias:[\w\-]+>/*' => array('pages/default/view/', 'alias'=>'<alias>'),
+                    //
+
+                ),
+            ),
         ),
     )
 );

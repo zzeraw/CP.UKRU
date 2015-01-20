@@ -1,6 +1,5 @@
 <?php
 
-Yii::import('application.modules.clubs.gallery.*');
 
 class GalleryBlock extends CWidget
 {
@@ -10,13 +9,13 @@ class GalleryBlock extends CWidget
     public $captions = 'off';
     public $row_span = 4;
     public $limit = false;
-    public $order = 'id';
+    public $order = false;
 
     public $height = false;
-    public $width = false;
+    public $width = 200;
     public $margin = '0 5px 0 0';
 
-    public $modal = true;
+    public $modal = false;
 
     public function run()
     {
@@ -39,7 +38,6 @@ class GalleryBlock extends CWidget
                     'photo' => $photo,
 
                     'style' => $style,
-                    'height' => $this->height,
 
                     'modal' => (bool) $this->modal,
                 ));
@@ -47,7 +45,7 @@ class GalleryBlock extends CWidget
                 $ids = str_replace(' ', '', $this->id);
                 $ids_array = explode(',', $ids);
 
-                $photos = GalleryPhoto::model()->active()->findAllByPkArray($ids_array, $this->order, $this->limit);
+                $photos = GalleryPhoto::model()->findAllByPkArray($ids_array, $this->order, $this->limit);
 
                 $this->render('galleryListPhotos', array(
 //                    'height' => $this->height,
@@ -57,14 +55,13 @@ class GalleryBlock extends CWidget
                     'widget_id' => $widget_id,
 
                     'style' => $style,
-                    'height' => $this->height,
 
                     'modal' => (bool) $this->modal,
                 ));
             }
         } elseif (!empty($this->album)) {
 
-            $photos = GalleryPhoto::model()->active()->findAllByAlbumTitle($this->album, $this->order, $this->limit);
+            $photos = GalleryPhoto::model()->findAllByAlbumTitle($this->album, $this->order, $this->limit);
 
 //            var_dump($photos);
 
@@ -76,7 +73,6 @@ class GalleryBlock extends CWidget
                 'widget_id' => $widget_id,
 
                 'style' => $style,
-                'height' => $this->height,
 
                 'modal' => (bool) $this->modal,
             ));

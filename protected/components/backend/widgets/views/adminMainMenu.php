@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">Ukrushka</a>
+            <a class="navbar-brand" href="/"><?=Yii::app()->name?></a>
         </div>
 
         <div>
@@ -19,17 +19,25 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="<?=Yii::app()->createUrl('')?>" class="dropdown-toggle" data-toggle="dropdown">Фотографии <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Портфолио <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="<?=Yii::app()->createUrl('portfolio/admin/items/create')?>">Добавить работу</a></li>
+                        <li><a href="<?=Yii::app()->createUrl('portfolio/admin/items/index')?>">Список работ</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Блог <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="<?=Yii::app()->createUrl('blog/admin/posts/create')?>">Создать пост</a></li>
+                        <li><a href="<?=Yii::app()->createUrl('blog/admin/posts/index')?>">Список постов</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="<?=Yii::app()->createUrl('')?>" class="dropdown-toggle" data-toggle="dropdown">Мультимедиа <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="header-label">Баннеры</li>
                         <li><a href="<?=Yii::app()->createUrl('banners/admin/banners/create')?>">Добавить баннер</a></li>
                         <li><a href="<?=Yii::app()->createUrl('banners/admin/banners/index')?>">Список баннеров</a></li>
-                        <li class="header-label">Фотографии</li>
-                        <li><a href="<?=Yii::app()->createUrl('gallery/admin/galleryPhotos/create')?>">Добавить фото</a></li>
-                        <li><a href="<?=Yii::app()->createUrl('gallery/admin/galleryPhotos/index')?>">Список фотографий</a></li>
-                        <li class="header-label">Альбомы фотографий</li>
-                        <li><a href="<?=Yii::app()->createUrl('gallery/admin/galleryAlbums/create')?>">Добавить альбом</a></li>
-                        <li><a href="<?=Yii::app()->createUrl('gallery/admin/galleryAlbums/index')?>">Список альбомов</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

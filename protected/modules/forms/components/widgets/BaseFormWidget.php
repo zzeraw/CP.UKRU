@@ -6,46 +6,26 @@ abstract class BaseFormWidget extends CWidget
      * form, button_with_form, button_without_form
      * @var string
      */
-    public $type;
+    public $modal;
+    public $modal_width = '530px';
 
     public $form_caption = 'form_caption';
-    public $form_width = 'auto';
-    public $form_height = 'auto';
-    public $form_item = '';
+    public $form_description = false;
+    public $form_width = false;
+    public $form_height = false;
     public $form_notice = '';
-    public $form_class = '';
+    public $form_class = 'request-form';
+
+    public $form_item = '';
+    public $show_form_item = false;
 
     public $form_button_text = 'button';
     public $form_button_type = 'default';
     public $form_button_size = 'default';
 
     public $button_text = 'button';
-    public $button_href = '#';
     public $button_type = 'default';
     public $button_size = 'default';
-
-    protected $types = array('form', 'button_with_form', 'button_without_form');
-
-    abstract protected function _loadFormWidget();
-
-    abstract protected function _loadButtonWithFormWidget();
-
-    abstract protected function _loadButtonWithoutFormWidget();
-
-    public function run()
-    {
-        if (!in_array($this->type, $this->types)) {
-            return false;
-        }
-
-        if ($this->type == 'form') {
-            $this->_loadFormWidget();
-        } elseif ($this->type == 'button_with_form') {
-            $this->_loadButtonWithFormWidget();
-        } elseif ($this->type == 'button_without_form') {
-            $this->_loadButtonWithoutFormWidget();
-        }
-    }
 
     public function genegateWidgetId($string = '')
     {
@@ -54,34 +34,24 @@ abstract class BaseFormWidget extends CWidget
         return $widget_id;
     }
 
+    public function generateStyles()
+    {
+        $style = '';
+        $style .= (!empty($this->form_height) ? 'height: ' . $this->form_height . 'px;' : '');
+        $style .= (!empty($this->form_width) ? 'width: ' . $this->form_width . 'px' : '');
+
+        return $style;
+    }
+
+
     public function generateClasses($type, $size, $modal = false)
     {
         if ($modal == true) {
-            $class_array[] = 'modal-item-request-button fancybox-modal';
+            $class_array[] = 'fancybox-modal';
         }
 
         $class_array[] = 'btn';
-
-        switch ($type) {
-            case 'green':
-                $class_array[] = 'btn-success';
-                break;
-            case 'red':
-                $class_array[] = 'btn-danger';
-                break;
-            case 'yellow':
-                $class_array[] = 'btn-warning';
-                break;
-            case 'blue':
-                $class_array[] = 'btn-primary';
-                break;
-            case 'link':
-                $class_array[] = 'btn-link';
-                break;
-            default:
-                $class_array[] = 'btn-default';
-                break;
-        }
+        $class_array[] = 'btn-' . $type;
 
         switch ($size) {
             case 'large':
@@ -100,7 +70,10 @@ abstract class BaseFormWidget extends CWidget
         return $class;
     }
 
+    protected function setFormAction()
+    {
 
+    }
 
 
 }

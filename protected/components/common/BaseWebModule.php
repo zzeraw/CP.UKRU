@@ -45,8 +45,5 @@ class BaseWebModule extends CWebModule
             Yii::import('application.modules.pages.models.*');
             $this->page = Page::model()->active()->findByAttributes(array('module' => $this->id));
         }
-
-//        var_dump($this->page);
-//        var_dump(Yii::app()->controller);
     }
 }

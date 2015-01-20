@@ -33,12 +33,6 @@
 	<?php endif; ?>
 
 	<div class="form-group">
-		<?php echo $form->labelEx($model,'image'); ?>
-		<?php echo $form->fileField($model,'image', array('class' => 'form-control input-xlarge')); ?>
-		<?php echo $form->error($model,'image'); ?>
-	</div>
-
-	<div class="form-group">
 		<?php echo $form->labelEx($model,'title'); ?>
 		<?php echo $form->textField($model,'title', array('class' => 'form-control input-xlarge')); ?>
 		<?php echo $form->error($model,'title'); ?>
@@ -48,6 +42,12 @@
 		<?php echo $form->labelEx($model,'description'); ?>
 		<?php echo $form->textArea($model,'description', array('class' => 'form-control input-xlarge')); ?>
 		<?php echo $form->error($model,'description'); ?>
+	</div>
+
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'image'); ?>
+		<?php echo $form->fileField($model,'image', array('class' => 'form-control input-xlarge')); ?>
+		<?php echo $form->error($model,'image'); ?>
 	</div>
 
 	<div class="form-group">

@@ -4,7 +4,7 @@ require_once(dirname(__FILE__) . '/params.php');
 
 return array(
 	'basePath'       => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name'           => 'Торты на заказ',
+    'name'           => 'Ukrushka',
     'sourceLanguage' => 'ru',
     'language'       => 'ru',
     'timeZone'       => 'Europe/Moscow',
@@ -53,6 +53,17 @@ return array(
 		'errorHandler' => array(
 			'errorAction' => 'site/error',
 		),
+        // 'cache' => array(
+        //     'class' => 'system.caching.CMemCache',
+        //     'useMemcached' => true,
+        //     'servers'=>array(
+        //         array(
+        //             'host' => '127.0.0.1',
+        //             'port' => 11211,
+        //             'weight' => 60,
+        //         ),
+        //     ),
+        // ),
         'log' => array(
             'class'=>'CLogRouter',
             'routes'=>array(
@@ -78,9 +89,12 @@ return array(
     'modules' => array(
         'banners',
         'blocks',
+        'blog',
         'forms',
         'gallery',
         'pages',
+        'portfolio',
+        'sitemap',
         'users',
     ),
 

@@ -1,5 +1,5 @@
 <?php
-$str_pos = stripos(Yii::app()->request->url, Yii::app()->createUrl('catalog/default/index'));
+$str_pos = stripos(Yii::app()->request->url, '/catalog');
 ?>
 
 <ul class="nav navbar-nav">
@@ -10,7 +10,7 @@ $str_pos = stripos(Yii::app()->request->url, Yii::app()->createUrl('catalog/defa
     </li>
     <li class="<?=($str_pos === 0) ? 'active' : ''?>">
         <a href="<?=Yii::app()->createUrl('catalog/default/index')?>" title="Каталог товаров">
-            Каталог товаров
+            Каталог продукции
         </a>
     </li>
     <li class="<?=(Yii::app()->request->url == Yii::app()->createUrl('pages/default/view', array('alias' => 'otzyvy'))) ? 'active' : ''?>">
@@ -19,7 +19,7 @@ $str_pos = stripos(Yii::app()->request->url, Yii::app()->createUrl('catalog/defa
         </a>
     </li>
     <li class="<?=(Yii::app()->request->url == Yii::app()->createUrl('pages/default/view', array('alias' => 'kontakty'))) ? 'active' : ''?>">
-        <a href="<?=Yii::app()->createUrl('pages/default/view', array('alias' => 'kontakty'))?>">
+        <a href="<?=Yii::app()->createUrl('pages/default/view', array('alias' => 'contacts'))?>">
             Контакты
         </a>
     </li>

@@ -17,6 +17,11 @@ class CHelper
         return !empty($date) ? Yii::app()->dateFormatter->format("dd MMMM yyyy", $date) . ' года' : false;
     }
 
+    public static function sqlDateToRussianDatetime($date)
+    {
+        return !empty($date) ? Yii::app()->dateFormatter->format("dd MMMM yyyy года в HH:mm", $date) : false;
+    }
+
     public static function trimSeconds($time)
     {
         return !empty($time) ? Yii::app()->dateFormatter->format("HH:mm", $time) : false;

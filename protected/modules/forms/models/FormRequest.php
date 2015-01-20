@@ -9,7 +9,7 @@
  * @property string $phone
  * @property string $description
  * @property string $created_ip
- * @property string $created_date
+ * @property string $created_datetime
  *
  * The followings are the available model relations:
  * @property ClubItems $club
@@ -69,18 +69,13 @@ class FormRequest extends BaseActiveRecord
 				'max' => 100,
 			),
 			array(
-				'description',
-				'length',
-				'max' => 500,
-			),
-			array(
-				'created_date',
+				'description, created_datetime',
 				'safe',
 			),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array(
-				'id, fio, phone, description, created_ip, created_date',
+				'id, fio, phone, description, created_ip, created_datetime',
 				'safe',
 				'on' => 'search'
 			),
@@ -95,6 +90,7 @@ class FormRequest extends BaseActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+
 		);
 	}
 
@@ -109,7 +105,7 @@ class FormRequest extends BaseActiveRecord
 			'phone' => 'Phone',
 			'description' => 'Description',
 			'created_ip' => 'Created Ip',
-			'created_date' => 'Created Date',
+			'created_datetime' => 'Created Date',
 		);
 	}
 
@@ -136,7 +132,7 @@ class FormRequest extends BaseActiveRecord
 		$criteria->compare('phone', $this->phone, true);
 		$criteria->compare('description', $this->description, true);
 		$criteria->compare('created_ip', $this->created_ip, true);
-		$criteria->compare('created_date', $this->created_date, true);
+		$criteria->compare('created_datetime', $this->created_datetime, true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,

@@ -46,7 +46,7 @@ class UsersController extends BackEndController
             array('allow',
                 'actions' => array('create', 'index', 'update'),
                 'roles' => array(User::ROLE_GLOBAL_ADMIN, User::ROLE_GLOBAL_MANAGER),
-//                 'users' => array('*'),
+                // 'users' => array('*'),
             ),
             array('allow',
                 'actions' =>array('delete'),

@@ -53,15 +53,6 @@
 	</div>
 
 	<div class="form-group">
-		<?php echo $form->labelEx($model,'show_in_menu'); ?>
-		<?php echo $form->dropDownList($model,'show_in_menu',
-			array(0 => 'Нет', 1 => 'Да'),
-			array('class' => 'span2')
-		); ?>
-		<?php echo $form->error($model,'show_in_menu'); ?>
-	</div>
-
-	<div class="form-group">
 		<?php echo $form->labelEx($model,'show_title'); ?>
 		<?php echo $form->dropDownList($model,'show_title',
 			array(0 => 'Нет', 1 => 'Да'),

@@ -9,11 +9,11 @@
  * @property string $password
  * @property integer $role
  * @property string $created_ip
- * @property string $created_date
+ * @property string $created_datetime
  * @property integer $created_user
  * @property string $created_username
  * @property string $modified_ip
- * @property string $modified_date
+ * @property string $modified_datetime
  * @property integer $modified_user
  * @property string $modified_username
  */
@@ -30,8 +30,8 @@ class User extends BaseActiveRecord
         parent::init();
 
         $this->roles = array(
-			self::ROLE_GLOBAL_ADMIN => 'Админ',
-			self::ROLE_GLOBAL_MANAGER => 'Менеджер',
+			self::ROLE_GLOBAL_ADMIN => 'Админ сети',
+			self::ROLE_GLOBAL_MANAGER => 'Менеджер сети',
 			self::ROLE_BANNED => 'Неактивный',
         );
     }
@@ -110,13 +110,13 @@ class User extends BaseActiveRecord
 				'max' => 200,
 			),
 			array(
-				'created_date, modified_date',
+				'created_datetime, modified_datetime',
 				'safe',
 			),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array(
-				'id, username, password, role, created_ip, created_date, created_user, created_username, modified_ip, modified_date, modified_user, modified_username',
+				'id, username, password, role, created_ip, created_datetime, created_user, created_username, modified_ip, modified_datetime, modified_user, modified_username',
 				'safe',
 				'on' => 'search',
 			),
@@ -146,11 +146,11 @@ class User extends BaseActiveRecord
 			'password' => 'Password',
 			'role' => 'Role',
 			'created_ip' => 'Created Ip',
-			'created_date' => 'Created Date',
+			'created_datetime' => 'Created Date',
 			'created_user' => 'Created User',
 			'created_username' => 'Created Username',
 			'modified_ip' => 'Modified Ip',
-			'modified_date' => 'Modified Date',
+			'modified_datetime' => 'Modified Date',
 			'modified_user' => 'Modified User',
 			'modified_username' => 'Modified Username',
 		);
@@ -179,11 +179,11 @@ class User extends BaseActiveRecord
 		$criteria->compare('password', $this->password, true);
 		$criteria->compare('role', $this->role);
 		$criteria->compare('created_ip', $this->created_ip, true);
-		$criteria->compare('created_date', $this->created_date, true);
+		$criteria->compare('created_datetime', $this->created_datetime, true);
 		$criteria->compare('created_user', $this->created_user);
 		$criteria->compare('created_username', $this->created_username, true);
 		$criteria->compare('modified_ip', $this->modified_ip, true);
-		$criteria->compare('modified_date', $this->modified_date, true);
+		$criteria->compare('modified_datetime', $this->modified_datetime, true);
 		$criteria->compare('modified_user', $this->modified_user);
 		$criteria->compare('modified_username', $this->modified_username, true);
 

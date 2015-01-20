@@ -1,29 +1,13 @@
 <?php /* @var $this Controller */ ?>
 <?php $this->beginContent('//layouts/main'); ?>
 
-<div class="">
+<?=$this->decodeWidgets($this->loadBlockBody('header'))?>
 
-    <div class="content">
-
-        <?=$this->decodeWidgets($this->loadBlockBody('main_menu'));?>
-
-            <?php if (isset($this->breadcrumbs)) : ?>
-                <?php $this->widget('MyBreadcrumbs', array(
-                    'homeLink' => CHtml::link('Главная', '/'),
-                    'links' => $this->breadcrumbs,
-                    'tagName' => 'ol',
-                    'htmlOptions' => array(
-                        'class' => 'breadcrumb',
-                    ),
-                    'activeLinkTemplate' => '<li><a href="{url}" title="{label}">{label}</a></li>',
-                    'inactiveLinkTemplate' => '<li class="active">{label}</li>',
-                    'separator' => false,
-                    'encodeLabel' => false,
-                )); ?>
-            <?php endif; ?>
-
+<div class="content">
+    <div class="layout-content">
+        <div class="container">
             <?php if (isset($this->page->id) && $this->page->show_title == 1) : ?>
-                <div class="font-h1 font-h-color margin-h2"><?=$this->page->title?></div>
+                <h1><?=$this->page->title?></h1>
             <?php endif; ?>
 
             <?php if (isset($this->page->id)) : ?>
@@ -41,9 +25,10 @@
                     <?=$this->decodeWidgets($this->page->end_body)?>
                 </div>
             <?php endif; ?>
-
+        </div>
     </div>
-
 </div>
+
+<?=$this->decodeWidgets($this->loadBlockBody('footer'))?>
 
 <?php $this->endContent(); ?>

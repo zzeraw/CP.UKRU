@@ -1,36 +1,23 @@
-<div class="row gallery-line">
+<div class="gallery-block">
 
     <?php if (count($photos)) foreach ($photos as $photo) : ?>
 
-        <div class="col-xs-<?=$row_span?>">
+        <?php if ($modal === true) : ?>
+            <a href="/uploads/<?=$photo->image?>" rel="<?=$widget_id?>" class="fancybox-image-link" title="<?=$photo->title?>">
+        <?php endif; ?>
 
-            <div class="thumbnail" style="<?=(!empty($height) ? 'height: ' . $height . 'px' : '')?>">
+            <img
+                src="/uploads/<?=($modal) ? 'thumb_' : ''?><?=$photo->image?>"
+                alt="<?=$photo->title?>"
+                title="<?=$photo->title?>"
+                style="<?=$style?>"
+            >
 
-                <?php if ($modal === true) : ?>
-                    <a href="/uploads/<?=$photo->image?>" rel="<?=$widget_id?>" class="fancybox-image" title="<?=$photo->title?>" style="overflow: hidden">
-                <?php endif; ?>
+        <?php if ($modal === true) : ?>
+            </a>
+        <?php endif; ?>
 
-                    <img
-                        class="img-responsive review"
-                        src="/uploads/<?=$photo->image?>"
-                        alt="<?=$photo->title?>"
-                        title="<?=$photo->title?>"
-                    >
-
-                <?php if ($captions == 'on') : ?>
-                    <div class="thumbnail-caption">
-                        <div><?=$photo->title?></div>
-                    </div>
-                <?php endif; ?>
-
-                <?php if ($modal === true) : ?>
-                    </a>
-                <?php endif; ?>
-            </div>
-
-        </div>
 
     <?php endforeach; ?>
 
 </div>
-

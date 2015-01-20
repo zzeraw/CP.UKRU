@@ -1,32 +1,9 @@
 <?php
 
-Yii::import('application.modules.blocks.*');
-Yii::import('application.modules.blocks.models.*');
-Yii::import('application.modules.blocks.models._forms.*');
-Yii::import('application.modules.blocks.models._base.*');
-
-Yii::import('application.modules.pages.*');
-Yii::import('application.modules.pages.models.*');
-Yii::import('application.modules.pages.models._forms.*');
-Yii::import('application.modules.pages.models._base.*');
-
-Yii::import('application.modules.forms.*');
-Yii::import('application.modules.forms.models.*');
-Yii::import('application.modules.forms.models._forms.*');
-Yii::import('application.modules.forms.models._base.*');
-Yii::import('application.modules.forms.components.*');
-Yii::import('application.modules.forms.components.custom.*');
-Yii::import('application.modules.forms.components.widgets.*');
-
-Yii::import('application.modules.gallery.*');
-Yii::import('application.modules.gallery.models.*');
-Yii::import('application.modules.gallery.models._forms.*');
-Yii::import('application.modules.gallery.models._base.*');
-
-
 class FrontEndController extends BaseController
 {
     public $layout = '//templates/default';
+
     public $page;
     public $pageIndex = 1;
     public $pageDescription;
@@ -37,11 +14,55 @@ class FrontEndController extends BaseController
 
     public function init()
     {
-        parent::init();
-
-        if (CHelper::segment(1) == 'admin') {
-            $this->redirect('http://' . $_SERVER['SERVER_NAME'] . '/admin.php', true, 301);
+        if (isset(Yii::app()->controller->module->page)) {
+            $page = Yii::app()->controller->module->page;
         }
+
+        if (isset($page->id)) {
+            $this->page = Yii::app()->controller->module->page;
+
+            $this->setPageMeta($this->page);
+            $this->setPageTemplate($this->page);
+        }
+
+        $this->_generateWidgetsList();
+
+        parent::init();
+    }
+
+    private function _generateWidgetsLocations()
+    {
+        $locations[] = 'application.components.frontend.widgets';
+        $modules = $this->_getModulesNames();
+
+        foreach ($modules as $module) {
+            $locations[] = 'application.modules.' . $module . '.components.widgets';
+        }
+
+        return $locations;
+    }
+
+    private function _generateWidgetsList()
+    {
+        $locations = $this->_generateWidgetsLocations();
+
+        $list = array();
+
+        foreach ($locations as $directory) {
+            $path = Yii::getPathOfAlias($directory);
+
+            if (is_dir($path)) {
+                $files = CFileHelper::findFiles($path, array('fileTypes' => array('php'), 'level' => 0));
+
+                if (count($files)) {
+                    foreach ($files as $file) {
+                        $list[] = basename($file, '.php');
+                    }
+                }
+            }
+        }
+
+        return $list;
     }
 
     public function behaviors()
@@ -49,57 +70,43 @@ class FrontEndController extends BaseController
         return array(
             'InlineCommonWidgetsBehavior' => array(
                 'class' => 'MyInlineWidgetsBehavior',
-                'location' => array(
-                    'application.components.frontend.widgets',
-                    'application.modules.banners.components.widgets',
-                    'application.modules.forms.components.widgets',
-                    'application.modules.gallery.components.widgets',
-                ),
+                'location' => $this->_generateWidgetsLocations(),
                 'startBlock' => '{{w:',
                 'endBlock' => '}}',
-                'widgets' => array(
-                    'BannersWidget',
-                    'GalleryBlock',
-                    'CurrentYear',
-                    'HomeUrl',
-                    'MainMenu',
-                    'BuildUrl',
-
-                    'SimpleFormWidget',
-                ),
+                'widgets' => $this->_generateWidgetsList(),
             ),
+
         );
-    }
-
-    protected function getPageInformation($alias)
-    {
-        $page_model = Page::model()->findByAlias($alias);
-
-        if (isset($page_model->id)) {
-            return $page_model;
-        } else {
-            throw new CHttpException(404, 'Запрашиваемая страница не найдена.');
-        }
     }
 
     protected function setPageMeta($page)
     {
-        if (empty($page->alias)) {
-            $homepage = $page;
-        } else {
+        $meta_title = '';
+
+        if (!empty($page->alias)) {
             $homepage = Page::model()->findByAlias('');
+            $meta_title = $homepage->meta_title;
+        } else {
+            $homepage = $page;
         }
 
-        $this->setPageTitle($homepage->meta_title);
-        $this->pageDescription = $homepage->meta_description;
-        $this->pageKeywords = $homepage->meta_keywords;
-
-        $this->pageIndex = $page->meta_index;
+        $meta_description = $page->meta_description;
+        $meta_keywords = $page->meta_keywords;
 
         if (empty($page->meta_title)) {
-            $this->setPageTitle($page->title . ' | ' . $this->pageTitle);
+            $meta_title = $page->title . ' | ' . $meta_title;
+        } else {
+            $meta_title = $page->meta_title;
         }
 
+        $meta_description = (!empty($meta_description)) ? $meta_description : $homepage->meta_description;
+        $meta_keywords = (!empty($meta_keywords)) ? $meta_keywords : $homepage->meta_keywords;
+
+        $this->setPageTitle($meta_title);
+
+        $this->pageDescription = $meta_description;
+        $this->pageKeywords = $meta_keywords;
+        $this->pageIndex = $page->meta_index;
     }
 
     protected function setPageTemplate($page)

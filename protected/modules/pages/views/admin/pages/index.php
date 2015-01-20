@@ -15,11 +15,6 @@ $this->menu = array(
         'icon' => 'plus',
         'url' => array('create')
     ),
-    array(
-        'label' => 'Сортировать страницы',
-        'icon' => 'move',
-        'url' => array('order')
-    ),
 );
 
 ?>
