@@ -4,8 +4,32 @@
 @header-color: #cdddf7;
 @dark-red-color: #c95158;
 
+@light-blue-color: #cdddf7;
+@dark-blue-color: #76869d;
+
 @defaultGridCol: 24px;
 @defaultGridDivision: @defaultGridCol * 4;
+
+@font-face {
+  font-family: Njichare; /* Гарнитура шрифта */
+  src: url(../fonts/njichare.eot); /* Путь к файлу со шрифтом */
+}
+@font-face {
+  font-family: Njichare; /* Гарнитура шрифта */
+  src: url(../fonts/njichare.otf); /* Путь к файлу со шрифтом */
+}
+@font-face {
+  font-family: Njichare; /* Гарнитура шрифта */
+  src: url(../fonts/njichare.woff); /* Путь к файлу со шрифтом */
+}
+@font-face {
+  font-family: Njichare; /* Гарнитура шрифта */
+  src: url(../fonts/njichare.svg); /* Путь к файлу со шрифтом */
+}
+@font-face {
+  font-family: Njichare; /* Гарнитура шрифта */
+  src: url(../fonts/njichare.ttf); /* Путь к файлу со шрифтом */
+}
 
 body {
   margin: 0;
@@ -14,7 +38,7 @@ body {
 //  background-attachment: fixed;
 
   color: #410f04;
-  font-family: 'Neucha', cursive;
+  // font-family: 'Njichare', 'Neucha', cursive;
 }
 
 div.container {
@@ -56,7 +80,8 @@ div.wide-container {
 }
 
 .font-h {
-    font-family: 'Neucha', cursive;
+    font-family: 'Njichare', 'Neucha', cursive;
+
     font-weight: 400;
     text-transform: uppercase;
 }
@@ -202,6 +227,12 @@ div.wide-container {
   padding: 70px 0;
 }
 
+.horizontal-line-block {
+  h1 {
+    color: @dark-blue-color;
+    font-family: 'Njichare', 'Neucha', cursive;
+  }
+}
 
 .incut-block {
 
@@ -211,7 +242,7 @@ div.wide-container {
   }
 
   .notched-section__top, .notched-section__bottom {
-    background: url(../img/notched-border.png) repeat-x;
+    background: url(../img/notched-border-blue.png) repeat-x;
     height: 10px;
   }
 
@@ -222,14 +253,14 @@ div.wide-container {
   .notched-section__content {
     overflow: hidden;
     padding: 28px 0;
-    background: whitesmoke;
-    background: -moz-linear-gradient(top, #f5f5f5 0%, #f0f0f0 31%, #f8f8f8 66%, #f7f7f7 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(31%, #f0f0f0), color-stop(66%, #f8f8f8), color-stop(100%, #f7f7f7));
-    background: -webkit-linear-gradient(top, #f5f5f5 0%, #f0f0f0 31%, #f8f8f8 66%, #f7f7f7 100%);
-    background: -o-linear-gradient(top, #f5f5f5 0%, #f0f0f0 31%, #f8f8f8 66%, #f7f7f7 100%);
-    background: -ms-linear-gradient(top, #f5f5f5 0%, #f0f0f0 31%, #f8f8f8 66%, #f7f7f7 100%);
-    background: linear-gradient(to bottom, #f5f5f5 0%,#f0f0f0 31%,#f8f8f8 66%,#f7f7f7 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#f7f7f7',GradientType=0 );
+    background: @light-blue-color;
+    // background: -moz-linear-gradient(top, #f5f5f5 0%, #f0f0f0 31%, #f8f8f8 66%, #f7f7f7 100%);
+    // background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(31%, #f0f0f0), color-stop(66%, #f8f8f8), color-stop(100%, #f7f7f7));
+    // background: -webkit-linear-gradient(top, #f5f5f5 0%, #f0f0f0 31%, #f8f8f8 66%, #f7f7f7 100%);
+    // background: -o-linear-gradient(top, #f5f5f5 0%, #f0f0f0 31%, #f8f8f8 66%, #f7f7f7 100%);
+    // background: -ms-linear-gradient(top, #f5f5f5 0%, #f0f0f0 31%, #f8f8f8 66%, #f7f7f7 100%);
+    // background: linear-gradient(to bottom, #f5f5f5 0%,#f0f0f0 31%,#f8f8f8 66%,#f7f7f7 100%);
+    // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#f7f7f7',GradientType=0 );
   }
 }
 

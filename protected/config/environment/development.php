@@ -7,7 +7,7 @@ return CMap::mergeArray(
         'components'=>array(
             // переопределяем компонент db
             'db' => array(
-                'connectionString' => 'mysql:host=localhost;dbname=cakes2',
+                'connectionString' => 'mysql:host=localhost;dbname=cakes',
                 'emulatePrepare' => true,
                 'username' => 'root',
                 'password' => 'admin',

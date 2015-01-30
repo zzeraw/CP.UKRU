@@ -3,9 +3,9 @@
 $environment = 'development';
 
 switch (dirname(__FILE__)) {
-    case '/Users/paveldanilov/Sites/sites.dev/cakes2':
-    case 'd:\OpenServer\domains\sites.dev\cakes2':
-    case 'D:\OpenServer\domains\sites.dev\cakes2':
+    case '/Users/paveldanilov/Sites/sites.dev/cakes':
+    case 'd:\OpenServer\domains\sites.dev\cakes':
+    case 'D:\OpenServer\domains\sites.dev\cakes':
         $yii = dirname(__FILE__) . '/_framework/1.1.16/yii.php';
         $protected = '/protected';
         break;
