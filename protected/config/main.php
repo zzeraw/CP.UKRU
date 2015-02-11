@@ -73,14 +73,14 @@ return array(
                 // 'facebook' => array(
                 //     // register your app here: https://developers.facebook.com/apps/
                 //     'class' => 'FacebookOAuthService',
-                //     'client_id' => '1070752142939039',
-                //     'client_secret' => 'd4057b7168755ce3d8840b3a83346c28',
+                //     'client_id' => '',
+                //     'client_secret' => '',
                 // ),
                 'vkontakte' => array(
                     // register your app here: https://vk.com/editapp?act=create&site=1
-                    'class' => 'VKontakteOAuthService',
-                    'client_id' => '4776327',
-                    'client_secret' => 'iixBWeZU8UFVwX1GED4y',
+                    'class' => '',
+                    'client_id' => '',
+                    'client_secret' => '',
                 ),
             ),
         ),
