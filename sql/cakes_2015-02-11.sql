@@ -7,7 +7,7 @@
 #
 # Адрес: 127.0.0.1 (MySQL 5.5.38)
 # Схема: cakes
-# Время создания: 2015-02-11 13:17:06 +0000
+# Время создания: 2015-02-11 17:10:56 +0000
 # ************************************************************
 
 
@@ -119,17 +119,28 @@ CREATE TABLE `blog_comments` (
   `blog_post_id` int(11) DEFAULT NULL,
   `comment` varchar(2048) DEFAULT NULL,
   `created_ip` varchar(300) DEFAULT NULL,
-  `created_datetime` int(11) DEFAULT NULL,
+  `created_datetime` datetime DEFAULT NULL,
   `created_user` int(11) DEFAULT NULL,
   `created_username` varchar(300) DEFAULT NULL,
   `modified_ip` varchar(300) DEFAULT NULL,
-  `modified_datetime` int(11) DEFAULT NULL,
+  `modified_datetime` datetime DEFAULT NULL,
   `modified_user` int(11) DEFAULT NULL,
   `modified_username` varchar(300) DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `blog_comments` WRITE;
+/*!40000 ALTER TABLE `blog_comments` DISABLE KEYS */;
+
+INSERT INTO `blog_comments` (`id`, `blog_user_id`, `blog_post_id`, `comment`, `created_ip`, `created_datetime`, `created_user`, `created_username`, `modified_ip`, `modified_datetime`, `modified_user`, `modified_username`, `active`)
+VALUES
+	(1,NULL,3,'Первый!',NULL,'2015-02-11 19:55:00',1,'Павел Данилов',NULL,'2015-02-11 19:55:00',NULL,NULL,NULL),
+	(2,NULL,3,'Второй','::1 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36','2015-02-11 19:55:00',1,'Павел Данилов','::1 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36','2015-02-11 19:55:00',1,'Павел Данилов',NULL),
+	(3,NULL,3,'Вищемеш!','::1 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36','2015-02-11 21:06:05',1,'Павел Данилов','::1 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36','2015-02-11 21:06:05',1,'Павел Данилов',NULL);
+
+/*!40000 ALTER TABLE `blog_comments` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Дамп таблицы blog_post_tags
@@ -190,7 +201,7 @@ INSERT INTO `blog_posts` (`id`, `title`, `annotation`, `body`, `meta_index`, `me
 VALUES
 	(1,'Пост 1',NULL,'<p>ыапвкпкупкупккп</p>',1,'','','','127.0.0.1 Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36','2015-01-20 12:54:01',2,'manager','127.0.0.1 Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36','2015-01-20 12:54:01',2,'manager',0),
 	(2,'Пост 2',NULL,'<p>ыпкпкупкупку</p>',1,'','','','127.0.0.1 Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36','2015-01-20 12:54:27',2,'manager','127.0.0.1 Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36','2015-01-20 12:54:27',2,'manager',0),
-	(3,'Мой первый пост',NULL,'<p>Пряники - это круто!</p>',1,'','','','::1 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36','2015-02-10 17:47:19',2,'manager','::1 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36','2015-02-10 17:47:19',2,'manager',1);
+	(3,'Мой первый пост',NULL,'<p>Пряники - это круто!</p>',1,'','','','::1 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36','2015-02-10 17:47:19',2,'manager','::1 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36','2015-02-11 20:46:47',1,'Павел Данилов',1);
 
 /*!40000 ALTER TABLE `blog_posts` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -252,7 +263,7 @@ LOCK TABLES `blog_users` WRITE;
 
 INSERT INTO `blog_users` (`id`, `social_id`, `social_name`, `name`, `profile_url`, `photo`, `created_ip`, `created_datetime`, `modified_ip`, `modified_datetime`, `active`)
 VALUES
-	(1,'896224','vkontakte','Павел Данилов','http://vk.com/id896224','http://vk.com/images/camera_50.gif','::1 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36','2015-02-11 16:44:39','::1 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36','2015-02-11 17:10:20',1);
+	(1,'896224','vkontakte','Павел Данилов','http://vk.com/id896224','http://vk.com/images/camera_50.gif','::1 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36','2015-02-11 16:44:39','::1 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36','2015-02-11 20:44:35',1);
 
 /*!40000 ALTER TABLE `blog_users` ENABLE KEYS */;
 UNLOCK TABLES;

@@ -62,6 +62,30 @@ class BlogComment extends BaseActiveRecord
 		);
 	}
 
+	protected function beforeSave()
+	{
+	    if (parent::beforeSave()) {
+
+	    	$ip = Yii::app()->request->getUserHostAddress() . ' ' . Yii::app()->request->getUserAgent();
+
+	        if ($this->isNewRecord) {
+	        	$this->created_user = $this->modified_user = Yii::app()->user->id;
+	        	$this->created_username = $this->modified_username = Yii::app()->user->name;
+	            $this->created_datetime = $this->modified_datetime = date('Y-m-d H:i:s');
+	            $this->created_ip = $this->modified_ip = $ip;
+	        } else {
+	        	$this->modified_user = Yii::app()->user->id;
+	        	$this->modified_username = Yii::app()->user->name;
+	            $this->modified_datetime = date('Y-m-d H:i:s');
+	            $this->modified_ip = $ip;
+	        }
+
+	        return true;
+	    } else {
+	        return false;
+	    }
+	}
+
 	/**
 	 * @return array relational rules.
 	 */
@@ -71,7 +95,7 @@ class BlogComment extends BaseActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'post' => array(self::BELONGS_TO, 'BlogPost', 'blog_post_id'),
-			'blogUser' => array(self::BELONGS_TO, 'BlogUser', 'blog_user_id'),
+			// 'blogUser' => array(self::BELONGS_TO, 'BlogUser', 'blog_user_id'),
 			'createdBlogUser' => array(self::BELONGS_TO, 'BlogUser', 'created_user'),
 			'modifiedBlogUser' => array(self::BELONGS_TO, 'BlogUser', 'modified_user'),
 		);

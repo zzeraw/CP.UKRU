@@ -7,7 +7,7 @@
     <div class="layout-content">
         <div class="container">
             <?php if (isset($this->page->id) && $this->page->show_title == 1) : ?>
-                <h1><?=$this->page->title?></h1>
+                <h1 class="font-h"><?=$this->page->title?></h1>
             <?php endif; ?>
 
             <?php if (isset($this->page->id)) : ?>

@@ -72,7 +72,7 @@ return array(
             'services' => array( // You can change the providers and their classes.
                 // 'facebook' => array(
                 //     // register your app here: https://developers.facebook.com/apps/
-                //     'class' => 'FacebookOAuthService',
+                //     'class' => '',
                 //     'client_id' => '',
                 //     'client_secret' => '',
                 // ),

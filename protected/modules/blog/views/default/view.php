@@ -1,4 +1,4 @@
-<h1><?=$model->title?></h1>
+<h2 class="font-h"><?=$model->title?></h2>
 <p><?=CHelper::sqlDateToRussianDatetime($model->created_datetime)?></p>
 <p><?=$model->generateTagsLinks()?></p>
 <div>
@@ -22,10 +22,7 @@
             ),
         )); ?>
 
-            <?php echo $form->errorSummary($comment_form); ?>
-
             <div class="form-group">
-                <?php echo $form->labelEx($comment_form,'comment'); ?>
                 <?php echo $form->textArea($comment_form,'comment', array('class' => 'form-control input-large')); ?>
                 <?php echo $form->error($comment_form,'comment'); ?>
             </div>
@@ -40,8 +37,27 @@
 
 <?php endif; ?>
 <hr>
-<?php foreach ($model->comments as $comment) : ?>
+<h3 class="font-h">Комментарии</h3>
+<?php if (count($model->comments)) : ?>
+    <?php foreach ($model->comments as $comment) : ?>
 
-    qwr
+        <div class="media">
+            <div class="media-left">
+                <a href="<?=$comment->createdBlogUser->profile_url?>">
+                    <img class="media-object" src="<?=$comment->createdBlogUser->photo?>" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading"><?=$comment->createdBlogUser->name?></h4>
+                <p><?=CHelper::sqlDateToRussianDatetime($comment->created_datetime)?></p>
+                <div>
+                    <?=CHtml::encode($comment->comment)?>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php else: ?>
 
-<?php endforeach; ?>
+    <p>Комментариев к этой записи пока что нет.</p>
+
+<?php endif; ?>
