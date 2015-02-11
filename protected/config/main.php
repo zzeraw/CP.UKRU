@@ -27,6 +27,12 @@ return array(
         'application.helpers.*',
         'application.behaviors.*',
         'application.vendors.*',
+
+        'ext.eoauth.*',
+        'ext.eoauth.lib.*',
+        'ext.lightopenid.*',
+        'ext.eauth.*',
+        'ext.eauth.services.*',
     ),
 
 	// используемые приложением поведения
@@ -38,32 +44,9 @@ return array(
 
 	// application components
 	'components' => array(
-        // 'clientScript' => array(
-        //     'coreScriptPosition' => CClientScript::POS_END,
-        //     'packages' => array(
-        //         'jquery' => array(
-        //             'baseUrl' => 'js/',
-        //             'js' => array(
-        //                 YII_DEBUG ? 'jquery-1.11.1.js' : 'jquery-1.11.1.min.js'
-        //             ),
-        //         ),
-        //     ),
-        // ),
-
 		'errorHandler' => array(
 			'errorAction' => 'site/error',
 		),
-        // 'cache' => array(
-        //     'class' => 'system.caching.CMemCache',
-        //     'useMemcached' => true,
-        //     'servers'=>array(
-        //         array(
-        //             'host' => '127.0.0.1',
-        //             'port' => 11211,
-        //             'weight' => 60,
-        //         ),
-        //     ),
-        // ),
         'log' => array(
             'class'=>'CLogRouter',
             'routes'=>array(
@@ -71,18 +54,35 @@ return array(
                     'class' => 'CFileLogRoute',
                     'levels' => 'error, warning',
                 ),
-//                array(
-//                    'class' => 'CustomFileLogRoute',
-//                    'categories' => 'deleteAction',
-//                    'levels' => CLogger::LEVEL_INFO,
-//                    'logFile' => 'deleteAction.log',
-//                ),
             ),
         ),
         'mailer' => array(
             'class' => 'application.extensions.mailer.EMailer',
             'pathViews' => 'application.views.email',
             'pathLayouts' => 'application.views.email.layouts'
+        ),
+        'loid' => array(
+            'class' => 'ext.lightopenid.loid',
+        ),
+        'eauth' => array(
+            'class' => 'ext.eauth.EAuth',
+            'popup' => true, // Use the popup window instead of redirecting.
+            'cache' => false, // Cache component name or false to disable cache. Defaults to 'cache'.
+            'cacheExpire' => 0, // Cache lifetime. Defaults to 0 - means unlimited.
+            'services' => array( // You can change the providers and their classes.
+                // 'facebook' => array(
+                //     // register your app here: https://developers.facebook.com/apps/
+                //     'class' => 'FacebookOAuthService',
+                //     'client_id' => '1070752142939039',
+                //     'client_secret' => 'd4057b7168755ce3d8840b3a83346c28',
+                // ),
+                'vkontakte' => array(
+                    // register your app here: https://vk.com/editapp?act=create&site=1
+                    'class' => 'VKontakteOAuthService',
+                    'client_id' => '4776327',
+                    'client_secret' => 'iixBWeZU8UFVwX1GED4y',
+                ),
+            ),
         ),
 	),
 

@@ -147,6 +147,10 @@ class BlogPost extends BaseActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'comments' => array(self::HAS_MANY, 'BlogComment', 'blog_post_id'),
+
+			'createdUser' => array(self::BELONGS_TO, 'User', 'created_user'),
+			'modifiedUser' => array(self::BELONGS_TO, 'User', 'modified_user'),
 		);
 	}
 
