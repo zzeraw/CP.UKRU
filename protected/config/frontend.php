@@ -16,6 +16,8 @@ return CMap::mergeArray(
         // компоненты
         'components' => array(
 
+
+
             'clientScript' => array(
                 'coreScriptPosition' => CClientScript::POS_END,
                 'packages' => array(
@@ -70,7 +72,12 @@ return CMap::mergeArray(
                 ),
             ),
 
+            'request'=>array(
+                'class'=>'DLanguageHttpRequest',
+            ),
+
             'urlManager' => array(
+                'class'=>'DLanguageUrlManager',
                 'urlFormat' => 'path',
                 'showScriptName' => false,
                 'urlSuffix' => '',

@@ -11,6 +11,8 @@ class DefaultController extends FrontEndController
 
     public function actionIndex($tags = false)
     {
+        // echo BlogPost::model()->getUrl();
+
         if (!empty($tags)) {
             $posts = BlogPost::model()->taggedWith($tags)->findAllActualPosts(true);
         } else {
@@ -80,10 +82,17 @@ class DefaultController extends FrontEndController
 
     public function actionView($id)
     {
+        $model = $this->_loadModel($id, BlogPost::model(), true);
+
+        // echo $model->getUrl();
+
         $return_url = Yii::app()->createUrl('blog/default/view', array('id' => $id));
+
+
+
         $this->checkAuth($return_url);
 
-        $model = $this->_loadModel($id, BlogPost::model(), true);
+
 
             // var_dump(Yii::app()->user->id);
 

@@ -306,4 +306,14 @@ class BlogPost extends BaseActiveRecord
 		return $html;
 
 	}
+
+	public function getUrl()
+	{
+		if (isset($this->id)) {
+			return Yii::app()->createUrl('blog/default/view', array('id' => $this->id));
+		} else {
+			return Yii::app()->createUrl('blog/default/index');
+		}
+
+	}
 }
