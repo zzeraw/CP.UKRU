@@ -39,7 +39,24 @@ class Block extends BaseActiveRecord
              'UsernameBehavior' => array(
                  'class' => 'UsernameBehavior',
              ),
+             'ml' => array(
+                'class' => 'ext.multilangual.MultilingualBehavior',
+                'localizedAttributes' => array(
+                    'body',
+                ),
+                'langClassName' => 'BlockLang',
+                'langTableName' => '{{blocks_lang}}',
+                'languages' => Yii::app()->params['translatedLanguages'],
+                'defaultLanguage' => Yii::app()->params['defaultLanguage'],
+                'langForeignKey' => 'owner_id',
+                'dynamicLangClass' => true,
+            ),
         );
+    }
+
+    public function defaultScope()
+    {
+        return $this->ml->localizedCriteria();
     }
 
 	/**
@@ -158,7 +175,7 @@ class Block extends BaseActiveRecord
 		$criteria->compare('active', $this->active);
 
 		return new CActiveDataProvider($this, array(
-			'criteria' => $criteria,
+			'criteria' => $this->ml->modifySearchCriteria($criteria),
 			'pagination' => array('pageSize' => 50),
 			'sort' => array(
                 'defaultOrder' => 'id DESC',

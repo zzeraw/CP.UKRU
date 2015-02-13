@@ -50,7 +50,29 @@ class Page extends BaseActiveRecord
             'UsernameBehavior' => array(
                 'class' => 'UsernameBehavior',
             ),
+            'ml' => array(
+                'class' => 'ext.multilangual.MultilingualBehavior',
+                'localizedAttributes' => array(
+                    'title',
+                    'begin_body',
+                    'end_body',
+                    'meta_title',
+                    'meta_keywords',
+                    'meta_description',
+                ),
+                'langClassName' => 'PageLang',
+                'langTableName' => '{{pages_lang}}',
+                'languages' => Yii::app()->params['translatedLanguages'],
+                'defaultLanguage' => Yii::app()->params['defaultLanguage'],
+                'langForeignKey' => 'owner_id',
+                'dynamicLangClass' => true,
+            ),
         );
+    }
+
+    public function defaultScope()
+    {
+        return $this->ml->localizedCriteria();
     }
 
 	/**
@@ -195,7 +217,7 @@ class Page extends BaseActiveRecord
 		$criteria->compare('active', $this->active);
 
 		return new CActiveDataProvider($this, array(
-			'criteria' => $criteria,
+			'criteria' => $this->ml->modifySearchCriteria($criteria),
 			'pagination' => array('pageSize' => 50),
 			'sort' => array(
                 'defaultOrder' => 'id DESC',

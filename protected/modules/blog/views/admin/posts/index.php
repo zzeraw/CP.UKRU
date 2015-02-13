@@ -45,9 +45,14 @@ $this->menu = array(
         ),
         array(
             'class' => 'CButtonColumn',
-            'template' => '{delete}',
+            'template' => '{comments} {delete}',
             'deleteConfirmation' => "js:'Вы действительно хотите удалить пост ' + $(this).parents('tr').children('.post-title').text() + '?'",
             'buttons' => array(
+                'comments' => array(
+                    'label' => 'Комментарии',
+                    'icon' => '',
+                    'url' => 'Yii::app()->createUrl("blog/admin/posts/comments", array("id" => $data->id))',
+                ),
                 'delete' => array(
                     'label' => 'Удалить',
                     'icon' => 'remove',

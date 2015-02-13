@@ -9,6 +9,11 @@
 
     <?php // Yii::app()->bootstrap->register(); ?>
 
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link href='http://fonts.googleapis.com/css?family=Neucha&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
     <?php Yii::app()->clientScript->registerPackage('bootstrap3'); ?>
     <?php Yii::app()->clientScript->registerPackage('jquery-ui'); ?>
     <?php Yii::app()->clientScript->registerPackage('nested-sortable'); ?>
@@ -72,8 +77,10 @@
             ],
 
             toolbar: "insertfile undo redo | forecolor backcolor | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image jbimages | code",
+            toolbar2: "fontselect emoticons",
             relative_urls : false,
-            valid_elements : '*[*]'
+            valid_elements : '*[*]',
+            theme: "modern"
 
         });
     </script>

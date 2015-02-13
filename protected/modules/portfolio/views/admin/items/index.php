@@ -27,6 +27,7 @@ $this->menu = array(
     'selectableRows' => 0,
     'rowCssClassExpression' => '($data->active == 1) ? "row-on" : "row-off"',
     'columns' => array(
+        'id',
         array(
             'class' => 'DataColumn',
             'evaluateHtmlOptions' => true,

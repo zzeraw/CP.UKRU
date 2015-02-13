@@ -8,7 +8,7 @@
         ),
 
         'translatedLanguages'=>array(
-            'ru'=>'Russian',
+            'ru'=>'Русский',
             'en'=>'English',
         ),
         'defaultLanguage'=>'ru',

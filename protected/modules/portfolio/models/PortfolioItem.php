@@ -75,8 +75,32 @@ class PortfolioItem extends BaseActiveRecord
                 'tagBindingTableTagId' => 'tagId',
                 'cacheID' => false,
                 'createTagsAutomatically' => true,
-            )
+            ),
+            'ml' => array(
+                'class' => 'ext.multilangual.MultilingualBehavior',
+                'localizedAttributes' => array(
+                    'title',
+                    'annotation',
+                    'body',
+                    'image_attr_title',
+                    'image_attr_alt',
+                    'meta_title',
+                    'meta_keywords',
+                    'meta_description',
+                ),
+                'langClassName' => 'PortfolioItemLang',
+                'langTableName' => '{{portfolio_items_lang}}',
+                'languages' => Yii::app()->params['translatedLanguages'],
+                'defaultLanguage' => Yii::app()->params['defaultLanguage'],
+                'langForeignKey' => 'owner_id',
+                'dynamicLangClass' => true,
+            ),
         );
+    }
+
+    public function defaultScope()
+    {
+        return $this->ml->localizedCriteria();
     }
 
 
@@ -242,7 +266,7 @@ class PortfolioItem extends BaseActiveRecord
 
     public function findAllActualItems($dataProviderFlag = false)
     {
-        $order = 'id DESC';
+        $order = 't.id DESC';
 
         if ($dataProviderFlag) {
             return new CActiveDataProvider($this->active(), array(

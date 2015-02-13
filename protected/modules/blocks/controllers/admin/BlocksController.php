@@ -4,6 +4,7 @@ class BlocksController extends BackEndController
 {
     private $_model_name = 'Block';
     private $_e_404_message = 'Запрашиваемый блок не найден.';
+    private $_multilang = true;
 
     public function actions()
     {
@@ -27,6 +28,7 @@ class BlocksController extends BackEndController
                 'success_message' => 'Блок успешно изменен!',
                 'error_message' => 'Не удалось изменить блок!',
                 'e_404_message' => $this->_e_404_message,
+                'multilang' => $this->_multilang,
             ),
             'index' => array(
                 'class' => 'IndexAction',

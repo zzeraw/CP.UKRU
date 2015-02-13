@@ -135,11 +135,16 @@ class BlogComment extends BaseActiveRecord
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($id = false)
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+
+		if ($id != false) {
+			$criteria->condition = 'blog_post_id = :post_id';
+			$criteria->params = array(':post_id' => $id);
+		}
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('blog_user_id',$this->blog_user_id);

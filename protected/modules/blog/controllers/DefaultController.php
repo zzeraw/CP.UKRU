@@ -132,6 +132,7 @@ class DefaultController extends FrontEndController
 
     public function actionLogin()
     {
+        $this->checkAuth('/');
         // display the login form
         $this->render('login');
     }

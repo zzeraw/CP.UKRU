@@ -4,6 +4,7 @@ class PostsController extends BackEndController
 {
     private $_model_name = 'BlogPost';
     private $_e_404_message = 'Запрашиваемый пост не найден.';
+    private $_multilang = true;
 
     public function actions()
     {
@@ -27,6 +28,7 @@ class PostsController extends BackEndController
                 'success_message' => 'Пост успешно изменен!',
                 'error_message' => 'Не удалось изменить пост!',
                 'e_404_message' => $this->_e_404_message,
+                'multilang' => $this->_multilang,
             ),
             'index' => array(
                 'class' => 'IndexAction',
@@ -53,13 +55,35 @@ class PostsController extends BackEndController
     {
         return array(
             array('allow',
-                'actions' => array('create', 'index', 'update', 'delete', 'turnOn', 'turnOff', 'suggest'),
+                'actions' => array('create', 'index', 'update', 'delete', 'turnOn', 'turnOff', 'suggest', 'comments'),
                 'roles' => array(User::ROLE_GLOBAL_ADMIN, User::ROLE_GLOBAL_MANAGER),
             ),
             array('deny',
                 'users' => array('?'),
             ),
         );
+    }
+
+    public function actionComments($id)
+    {
+        $model = CActiveRecord::model($this->_model_name)->findByPk($id);
+
+        $this->render('comments',
+            array(
+                'model' => $model,
+            )
+        );
+    }
+
+    public function actionDeleteComment($id)
+    {
+        CActiveRecord::model('BlogComment')->findByPk($id)->delete();
+
+        // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+        if (!isset($_GET['ajax'])) {
+            $this->setSuccess('Комментарий удален');
+            $this->redirect('index');
+        }
     }
 
     public function actionSuggest(){

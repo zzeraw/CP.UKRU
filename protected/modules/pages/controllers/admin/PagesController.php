@@ -4,6 +4,7 @@ class PagesController extends BackEndController
 {
     private $_model_name = 'Page';
     private $_e_404_message = 'Запрашиваемая страница не найдена.';
+    private $_multilang = true;
 
     public function actions()
     {
@@ -27,6 +28,7 @@ class PagesController extends BackEndController
                 'success_message' => 'Страница успешно изменена!',
                 'error_message' => 'Не удалось изменить страницу!',
                 'e_404_message' => $this->_e_404_message,
+                'multilang' => $this->_multilang,
             ),
             'index' => array(
                 'class' => 'IndexAction',

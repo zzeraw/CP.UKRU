@@ -4,6 +4,7 @@ class ItemsController extends BackEndController
 {
     private $_model_name = 'PortfolioItem';
     private $_e_404_message = 'Запрашиваемая работа не найдена.';
+    private $_multilang = true;
 
     public function actions()
     {
@@ -27,6 +28,7 @@ class ItemsController extends BackEndController
                 'success_message' => 'Работа успешно изменена!',
                 'error_message' => 'Не удалось изменить работу!',
                 'e_404_message' => $this->_e_404_message,
+                'multilang' => $this->_multilang,
             ),
             'index' => array(
                 'class' => 'IndexAction',

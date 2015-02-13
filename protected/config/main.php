@@ -70,15 +70,15 @@ return array(
             'cache' => false, // Cache component name or false to disable cache. Defaults to 'cache'.
             'cacheExpire' => 0, // Cache lifetime. Defaults to 0 - means unlimited.
             'services' => array( // You can change the providers and their classes.
-                // 'facebook' => array(
-                //     // register your app here: https://developers.facebook.com/apps/
-                //     'class' => '',
-                //     'client_id' => '',
-                //     'client_secret' => '',
-                // ),
+                'facebook' => array(
+                    // register your app here: https://developers.facebook.com/apps/
+                    'class' => 'FacebookOAuthService',
+                    'client_id' => '',
+                    'client_secret' => '',
+                ),
                 'vkontakte' => array(
                     // register your app here: https://vk.com/editapp?act=create&site=1
-                    'class' => '',
+                    'class' => 'VKontakteOAuthService',
                     'client_id' => '',
                     'client_secret' => '',
                 ),

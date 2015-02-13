@@ -50,48 +50,39 @@ class BlogPost extends BaseActiveRecord
             ),
             'tags' => array(
 	            'class' => 'ext.yiiext.behaviors.model.taggable.ETaggableBehavior',
-	            // Имя таблицы для хранения тегов
 	            'tagTable' => 'blog_tags',
-	            // Имя кросс-таблицы, связывающей тег с моделью.
-	            // По умолчанию выставляется как Имя_таблицы_моделиTag
 	            'tagBindingTable' => 'blog_post_tags',
-	            // Имя внешнего ключа модели в кроcc-таблице.
-	            // По умолчанию равно имя_таблицы_моделиId
 	            'modelTableFk' => 'post_id',
-
-	            // tagTableCondition - по умолчанию пусто. Может быть использовано в том случае, если тег составляется
-	            // из нескольких полей и требуется особый SQL для его нахождения. Пример для таблицы user:
-	            // 'tagTableCondition' => new CDbExpression("CONCAT(t.name,' ',t.surname) = :tag "),
-
-	            // Имя первичного ключа тега
 	            'tagTablePk' => 'id',
-	            // Имя поля названия тега
 	            'tagTableName' => 'name',
-	            // Имя поля счетчика тега
-	            // Если устанвовлено в null (по умолчанию), то не сохраняется в базе
 	            'tagTableCount' => 'count',
-	            // ID тега в таблице-связке
 	            'tagBindingTableTagId' => 'tagId',
-	            // ID компонента, реализующего кеширование. Если false кеширование не происходит.
-	            // По умолчанию ID равен false.
 	            'cacheID' => false,
-
-	            // Создавать несуществующие теги автоматически.
-	            // При значении false сохранение выкидывает исключение если добавляемый тег не существует.
 	            'createTagsAutomatically' => true,
-
-				// // Критерий по умолчанию для выборки тегов
-	   //          'scope' => array(
-				// 	'condition' => ' t.user_id = :user_id ',
-				// 	'params' => array( ':user_id' => Yii::app()->user->id ),
-				// ),
-
-				// // Значения, которые необходимо вставлять при записи тега
-				// 'insertValues' => array(
-				// 	'user_id' => Yii::app()->user->id,
-				// ),
-	        )
+	        ),
+			'ml' => array(
+                'class' => 'ext.multilangual.MultilingualBehavior',
+                'localizedAttributes' => array(
+                    'title',
+                    'annotation',
+                    'body',
+                    'meta_title',
+                    'meta_keywords',
+                    'meta_description',
+                ),
+                'langClassName' => 'BlogPostLang',
+                'langTableName' => '{{blog_posts_lang}}',
+                'languages' => Yii::app()->params['translatedLanguages'],
+                'defaultLanguage' => Yii::app()->params['defaultLanguage'],
+                'langForeignKey' => 'owner_id',
+                'dynamicLangClass' => true,
+            ),
         );
+    }
+
+    public function defaultScope()
+    {
+        return $this->ml->localizedCriteria();
     }
 
 	/**
@@ -151,6 +142,8 @@ class BlogPost extends BaseActiveRecord
 
 			'createdUser' => array(self::BELONGS_TO, 'User', 'created_user'),
 			'modifiedUser' => array(self::BELONGS_TO, 'User', 'modified_user'),
+
+			// 'blogPostLangs' => array(self::HAS_MANY, 'BlogPostLang', 'owner_id'),
 		);
 	}
 
@@ -215,8 +208,8 @@ class BlogPost extends BaseActiveRecord
 		$criteria->compare('active',$this->active);
 
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
+            'criteria' => $this->ml->modifySearchCriteria($criteria),
+        ));
 	}
 
 	/**
@@ -253,6 +246,7 @@ class BlogPost extends BaseActiveRecord
     	parent::afterDelete();
 
     	$this->deleteTags();
+
 
     	return false;
     }
@@ -314,6 +308,5 @@ class BlogPost extends BaseActiveRecord
 		} else {
 			return Yii::app()->createUrl('blog/default/index');
 		}
-
 	}
 }

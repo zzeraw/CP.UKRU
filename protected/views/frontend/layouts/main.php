@@ -35,11 +35,8 @@
 
 <body>
 
-    <?php echo Yii::app()->language; ?>
-    <br>
-    <?php echo Yii::app()->createUrl('blog/default/view', array('id'=>1)); ?>
-    <br>
-    <?php $this->widget('LanguageSwitcherWidget'); ?>
+    <?php // echo Yii::app()->language; ?>
+    <?php // echo Yii::app()->createUrl('blog/default/view', array('id'=>1)); ?>
 
     <?php echo $content; ?>
 

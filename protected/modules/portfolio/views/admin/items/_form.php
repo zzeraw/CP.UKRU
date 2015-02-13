@@ -12,39 +12,45 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="form-group">
-		<?php echo $form->labelEx($model,'title'); ?>
-		<?php echo $form->textField($model,'title', array('class' => 'form-control input-large')); ?>
-		<?php echo $form->error($model,'title'); ?>
-	</div>
+	<?php foreach (DMultilangHelper::suffixList() as $suffix => $lang) : ?>
+        <div class="form-group">
+            <?php echo $form->labelEx($model, 'title'); ?> <?php echo $lang; ?><br />
+            <?php echo $form->textField($model, 'title' . $suffix, array('class' => 'form-control input-large')); ?>
+            <?php echo $form->error($model, 'title' . $suffix); ?>
+        </div>
+    <?php endforeach; ?>
 
-	<div class="form-group">
-		<?php echo $form->labelEx($model,'annotation'); ?>
-		<?php echo $form->textArea(
-			$model,
-			'annotation',
-			array(
-				'rows' => 6,
-				'cols' => 50,
-				'class' => 'tinymce',
-			)
-		); ?>
-		<?php echo $form->error($model,'annotation'); ?>
-	</div>
+	<?php foreach (DMultilangHelper::suffixList() as $suffix => $lang) : ?>
+        <div class="form-group">
+            <?php echo $form->labelEx($model, 'annotation'); ?> <?php echo $lang; ?><br />
+            <?php echo $form->textArea(
+                $model,
+                'annotation' . $suffix,
+                array(
+                    'rows' => 6,
+                    'cols' => 50,
+                    'class' => 'tinymce',
+                )
+            ); ?>
+            <?php echo $form->error($model, 'annotation' . $suffix); ?>
+        </div>
+    <?php endforeach; ?>
 
-	<div class="form-group">
-		<?php echo $form->labelEx($model,'body'); ?>
-		<?php echo $form->textArea(
-			$model,
-			'body',
-			array(
-				'rows' => 10,
-				'cols' => 50,
-				'class' => 'tinymce',
-			)
-		); ?>
-		<?php echo $form->error($model,'body'); ?>
-	</div>
+	<?php foreach (DMultilangHelper::suffixList() as $suffix => $lang) : ?>
+        <div class="form-group">
+            <?php echo $form->labelEx($model, 'body'); ?> <?php echo $lang; ?><br />
+            <?php echo $form->textArea(
+                $model,
+                'body' . $suffix,
+                array(
+                    'rows' => 6,
+                    'cols' => 50,
+                    'class' => 'tinymce',
+                )
+            ); ?>
+            <?php echo $form->error($model, 'body' . $suffix); ?>
+        </div>
+    <?php endforeach; ?>
 
 
 	<?php if (!empty($model->image)) : ?>
@@ -59,18 +65,21 @@
         <?php echo $form->error($model,'image'); ?>
     </div>
 
-    <div class="form-group">
-        <?php echo $form->labelEx($model,'image_attr_title'); ?>
-        <?php echo $form->textArea($model,'image_attr_title', array('class' => 'form-control input-large')); ?>
-        <?php echo $form->error($model,'image_attr_title'); ?>
-    </div>
+    <?php foreach (DMultilangHelper::suffixList() as $suffix => $lang) : ?>
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'image_attr_title'); ?> <?php echo $lang; ?><br />
+            <?php echo $form->textField($model,'image_attr_title' . $suffix, array('class' => 'form-control input-large')); ?>
+            <?php echo $form->error($model,'image_attr_title' . $suffix); ?>
+        </div>
+    <?php endforeach; ?>
 
-    <div class="form-group">
-        <?php echo $form->labelEx($model,'image_attr_alt'); ?>
-        <?php echo $form->textArea($model,'image_attr_alt', array('class' => 'form-control input-large')); ?>
-        <?php echo $form->error($model,'image_attr_alt'); ?>
-    </div>
-
+    <?php foreach (DMultilangHelper::suffixList() as $suffix => $lang) : ?>
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'image_attr_alt'); ?> <?php echo $lang; ?><br />
+            <?php echo $form->textField($model,'image_attr_alt' . $suffix, array('class' => 'form-control input-large')); ?>
+            <?php echo $form->error($model,'image_attr_alt' . $suffix); ?>
+        </div>
+    <?php endforeach; ?>
 
     <div class="form-group">
         <?php echo $form->labelEx($model,'tagsString'); ?>
@@ -87,23 +96,29 @@
 		<?php echo $form->error($model,'meta_index'); ?>
 	</div>
 
-	<div class="form-group">
-		<?php echo $form->labelEx($model,'meta_title'); ?>
-		<?php echo $form->textField($model,'meta_title', array('class' => 'form-control input-large')); ?>
-		<?php echo $form->error($model,'meta_title'); ?>
-	</div>
+	<?php foreach (DMultilangHelper::suffixList() as $suffix => $lang) : ?>
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'meta_title'); ?> <?php echo $lang; ?><br />
+            <?php echo $form->textField($model,'meta_title' . $suffix, array('class' => 'form-control input-large')); ?>
+            <?php echo $form->error($model,'meta_title' . $suffix); ?>
+        </div>
+    <?php endforeach; ?>
 
-	<div class="form-group">
-		<?php echo $form->labelEx($model,'meta_keywords'); ?>
-		<?php echo $form->textArea($model,'meta_keywords', array('class' => 'form-control input-large')); ?>
-		<?php echo $form->error($model,'meta_keywords'); ?>
-	</div>
+    <?php foreach (DMultilangHelper::suffixList() as $suffix => $lang) : ?>
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'meta_keywords'); ?> <?php echo $lang; ?><br />
+            <?php echo $form->textArea($model,'meta_keywords' . $suffix, array('class' => 'form-control input-large')); ?>
+            <?php echo $form->error($model,'meta_keywords' . $suffix); ?>
+        </div>
+    <?php endforeach; ?>
 
-	<div class="form-group">
-		<?php echo $form->labelEx($model,'meta_description'); ?>
-		<?php echo $form->textArea($model,'meta_description', array('class' => 'form-control input-large')); ?>
-		<?php echo $form->error($model,'meta_description'); ?>
-	</div>
+    <?php foreach (DMultilangHelper::suffixList() as $suffix => $lang) : ?>
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'meta_description'); ?> <?php echo $lang; ?><br />
+            <?php echo $form->textArea($model,'meta_description' . $suffix, array('class' => 'form-control input-large')); ?>
+            <?php echo $form->error($model,'meta_description' . $suffix); ?>
+        </div>
+    <?php endforeach; ?>
 
 	<div class="buttons">
 		<?php echo CHtml::submitButton('Сохранить', array('class' => 'btn btn-primary')); ?>

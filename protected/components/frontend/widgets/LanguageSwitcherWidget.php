@@ -6,11 +6,23 @@ class LanguageSwitcherWidget extends CWidget
     {
         $currentUrl = ltrim(Yii::app()->request->url, '/');
         $links = array();
-        foreach (DMultilangHelper::suffixList() as $suffix => $name){
+        foreach (DMultilangHelper::suffixList() as $suffix => $name) {
             $url = '/' . ($suffix ? trim($suffix, '_') . '/' : '') . $currentUrl;
-            $links[] = CHtml::tag('li', array('class'=>$suffix), CHtml::link($name, $url));
+
+            if (Yii::app()->params['defaultLanguage'] === Yii::app()->getLanguage()) {
+                $lang = '';
+            } else {
+                $lang = '_' . Yii::app()->getLanguage();
+            }
+
+            if ($suffix == $lang) {
+                $links[] = CHtml::link('<b>' . $name . '</b>', $url);
+            } else {
+                $links[] = CHtml::link($name, $url);
+            }
         }
-        echo CHtml::tag('ul', array('class'=>'language'), implode("\n", $links));
+
+        echo implode(" / ", $links);
     }
 }
 
