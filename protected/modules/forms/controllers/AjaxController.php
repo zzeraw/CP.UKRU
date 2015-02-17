@@ -16,7 +16,13 @@ class AjaxController extends FrontEndController
 
     public function actionFormValidation($widget_id, $model_name)
     {
+        // var_dump(123);
+
         $model = new $model_name;
+
+        // var_dump($model);
+
+        // var_dump($_POST);
 
         if (isset($_POST['ajax']) && $_POST['ajax'] === $widget_id) {
             echo CActiveForm::validate($model);

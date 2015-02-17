@@ -71,7 +71,14 @@ class OrderRequestForm extends BaseFormModel
 
         $db->fio = $this->fio;
         $db->phone = $this->phone;
-        $db->description = json_encode(array('subject' => $this->email_subject));
+        $db->description = json_encode(
+            array(
+                'subject' => $this->email_subject,
+                'item' => $this->item,
+                // 'comment' => $this->comment,
+            )
+        );
+        $db->system_info = Yii::app()->session['utm_session'];
 
         $db->save();
 

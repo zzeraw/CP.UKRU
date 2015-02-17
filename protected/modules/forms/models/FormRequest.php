@@ -143,4 +143,20 @@ class FormRequest extends BaseActiveRecord
         ));
 	}
 
+	public function parseJson($string)
+	{
+	$result = '';
+
+		if (CHelper::isJson($string)) {
+			$array = json_decode($string, TRUE);
+
+			if (count($array)) foreach ($array as $key => $value) {
+				$result .= '<b>' . $key . '</b>' . ': ' . $value . '<br>';
+			}
+		} else {
+			$result = $string;
+		}
+		return $result;
+	}
+
 }

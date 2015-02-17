@@ -29,6 +29,7 @@ class FrontEndController extends BaseController
         }
 
         $this->_generateWidgetsList();
+        $this->_launchUtmHandler();
 
         parent::init();
     }
@@ -169,9 +170,18 @@ class FrontEndController extends BaseController
 
     protected function trailingSlashRedirect()
     {
+        if (Yii::app()->request->isAjaxRequest) {
+            return false;
+        }
+
         // Remove any double slashes and force a trailing slash to the request URI
 
         $requestUri = yii::app()->request->requestUri;
+
+        if (true === strpos($requestUri, '.')) {
+
+        }
+
         $repairedRequestUri = $requestUri;
 
         while (false !== strpos($repairedRequestUri, '//')) {
@@ -187,7 +197,7 @@ class FrontEndController extends BaseController
             $repairedRequestUri = substr($repairedRequestUri, 0, strpos($repairedRequestUri, '?')) . '/' . substr($repairedRequestUri, strpos($repairedRequestUri, '?'));
         }
 
-        if ($repairedRequestUri !== $requestUri) {
+        if ( (false === strpos($repairedRequestUri, '.')) && ($repairedRequestUri !== $requestUri) ) {
             Yii::app()->request->redirect($repairedRequestUri, true, 301);
         }
     }

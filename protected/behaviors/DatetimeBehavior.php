@@ -8,10 +8,8 @@ class DatetimeBehavior extends CActiveRecordBehavior
         if ($this->owner->isNewRecord) {
             $this->owner->created_datetime = $date;
 
-            try {
+            if (isset($this->owner->modified_datetime)) {
                 $this->owner->modified_datetime = $date;
-            } catch (Exception $e) {
-
             }
         } else {
             $this->owner->modified_datetime = $date;

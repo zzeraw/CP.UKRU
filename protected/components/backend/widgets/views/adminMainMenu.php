@@ -47,6 +47,13 @@
                         <li><a href="<?=Yii::app()->createUrl('users/admin/users/index')?>">Список пользователей</a></li>
                     </ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Отчеты <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="header-label">Формы</li>
+                        <li><a href="<?=Yii::app()->createUrl('forms/admin/reports/index')?>">Отчеты о заявках</a></li>
+                    </ul>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
 

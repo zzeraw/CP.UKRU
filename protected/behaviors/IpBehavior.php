@@ -8,10 +8,8 @@ class IpBehavior extends CActiveRecordBehavior
         if ($this->owner->isNewRecord) {
             $this->owner->created_ip = $ip;
 
-            try {
+            if (isset($this->owner->modified_ip)) {
                 $this->owner->modified_ip = $ip;
-            } catch (Exception $e) {
-
             }
         } else {
             $this->owner->modified_ip = $ip;
