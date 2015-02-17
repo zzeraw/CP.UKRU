@@ -72,13 +72,13 @@ return array(
             'services' => array( // You can change the providers and their classes.
                 'facebook' => array(
                     // register your app here: https://developers.facebook.com/apps/
-                    'class' => 'FacebookOAuthService',
+                    'class' => 'CustomFacebookService',
                     'client_id' => '',
                     'client_secret' => '',
                 ),
                 'vkontakte' => array(
                     // register your app here: https://vk.com/editapp?act=create&site=1
-                    'class' => 'VKontakteOAuthService',
+                    'class' => 'CustomVKontakteService',
                     'client_id' => '',
                     'client_secret' => '',
                 ),

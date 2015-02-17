@@ -6,7 +6,11 @@ class DefaultController extends FrontEndController
     {
         parent::init();
 
-
+         if (isset($session['eauth_attributes'])) {
+            echo '<div style="padding: 20px;"><strong>EAuth profile:</strong><br/>';
+            CVarDumper::dump($session['eauth_profile'], 10, true);
+            echo '</div>';
+        }
     }
 
     public function actionIndex($tags = false)
@@ -94,7 +98,7 @@ class DefaultController extends FrontEndController
 
 
 
-            // var_dump(Yii::app()->user->id);
+            // // var_dump(Yii::app()->user->id);
 
             // $session = Yii::app()->session;
             // if (isset($session['eauth_profile'])) {

@@ -6,6 +6,6 @@ class PortfolioTagUrl extends CWidget
 
     public function run()
     {
-        return Yii::app()->createUrl('portfolio/default/index', array($tags => $this->tag));
+        echo Yii::app()->createUrl('portfolio/default/index', array('tags' => $this->tag));
     }
 }

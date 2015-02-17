@@ -316,7 +316,7 @@ class PortfolioItem extends BaseActiveRecord
         foreach ($tags as $key => $name) {
             $link = Yii::app()->createUrl('portfolio/default/index', array('tags' => $name));
 
-            $html .= '<a href="' . $link . '">' . $name . '</a>';
+            $html .= '<a href="' . $link . '">#' . $name . '</a>';
 
             if (count($tags) != $key+1) {
                 $html .= ', ';

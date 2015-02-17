@@ -1,4 +1,4 @@
-<h1><?=$model->title?></h1>
+<h2><?=$model->title?></h2>
 <p><?=CHelper::sqlDateToRussianDatetime($model->created_datetime)?></p>
 <p><?=$model->generateTagsLinks()?></p>
 <hr/>

@@ -20,14 +20,20 @@ class CustomAuthUserIdentity extends EAuthUserIdentity {
 	 *
 	 * @return boolean whether authentication succeeds.
 	 */
-	public function authenticate() {
+	public function authenticate()
+	{
 		if ($this->service->isAuthenticated) {
 			// $this->id = $this->service->serviceName . $this->service->id;
+
 			$this->name = $this->service->getAttribute('name');
 
 			$user_model = BlogUser::model()->getUser($this->service->serviceName, $this->service->id);
 
 			// var_dump($user_model);
+
+
+
+
 
 			$user_model->social_name = $this->service->serviceName;
 			$user_model->social_id = $this->service->id;

@@ -6,7 +6,7 @@
 </div>
 <hr>
 <?php if (Yii::app()->user->isGuest) : ?>
-    <p>Do you already have an account on one of these sites? Click the logo to log in with it here:</p>
+    <p>Если у вас есть аккаунт в этих социальных сетях, то вы можете войти через него и оставить комментарий к этой записи.</p>
     <?php
         $this->widget('ext.eauth.EAuthWidget');
     ?>
@@ -44,7 +44,7 @@
         <div class="media">
             <div class="media-left">
                 <a href="<?=$comment->createdBlogUser->profile_url?>">
-                    <img class="media-object" src="<?=$comment->createdBlogUser->photo?>" alt="...">
+                    <img style="width: 50px;" class="media-object" src="<?=$comment->createdBlogUser->photo?>" alt="...">
                 </a>
             </div>
             <div class="media-body">
@@ -55,6 +55,7 @@
                 </div>
             </div>
         </div>
+        <br>
     <?php endforeach; ?>
 <?php else: ?>
 

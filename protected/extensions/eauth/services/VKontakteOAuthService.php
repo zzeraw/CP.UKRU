@@ -47,7 +47,7 @@ class VKontakteOAuthService extends EOAuth2Service {
 		$this->attributes['id'] = $info->uid;
 		$this->attributes['name'] = $info->first_name . ' ' . $info->last_name;
 		$this->attributes['url'] = 'http://vk.com/id' . $info->uid;
-		$this->attributes['photo'] = $info->photo;
+		// $this->attributes['photo'] = $info->photo;
 
 		/*if (!empty($info->nickname))
 			$this->attributes['username'] = $info->nickname;

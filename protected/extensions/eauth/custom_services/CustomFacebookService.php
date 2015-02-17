@@ -11,6 +11,12 @@ class CustomFacebookService extends FacebookOAuthService {
 	 * @see FacebookOAuthService::fetchAttributes()
 	 */
 	protected function fetchAttributes() {
-		$this->attributes = (array)$this->makeSignedRequest('https://graph.facebook.com/me');
+		$info = (object)$this->makeSignedRequest('https://graph.facebook.com/me');
+
+		$this->attributes['id'] = $info->id;
+		$this->attributes['name'] = $info->name;
+		$this->attributes['url'] = $info->link;
+
+		$this->attributes['photo'] = "http://graph.facebook.com/{$info->id}/picture?type=large";
 	}
 }

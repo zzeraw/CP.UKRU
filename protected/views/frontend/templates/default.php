@@ -29,6 +29,8 @@
     </div>
 </div>
 
+<hr>
+
 <?=$this->decodeWidgets($this->loadBlockBody('footer'))?>
 
 <?php $this->endContent(); ?>

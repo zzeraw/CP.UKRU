@@ -23,7 +23,7 @@
 
                 <?php if ($captions == 'on') : ?>
                     <div class="caption" style="height: 50px;">
-                        <p><a href="<?=Yii::app()->createUrl('portfolio/default/view', array('id' => $item->id))?>"><?=$item->title?></a></p>
+                        <p class="font-h"><a href="<?=Yii::app()->createUrl('portfolio/default/view', array('id' => $item->id))?>"><?=$item->title?></a></p>
                     </div>
                 <?php endif; ?>
 

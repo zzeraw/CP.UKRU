@@ -1,7 +1,7 @@
 <?php
 
     $params = array(
-        'adminEmail' => '',
+        'adminEmail' => 'pv.danilov.dev@yandex.ru',
         'fromEmail' => 'pv.danilov.dev@yandex.ru',
         'managerEmail' => array(
             'pv.danilov.dev@yandex.ru',
