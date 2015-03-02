@@ -252,6 +252,9 @@ class BlogPost extends BaseActiveRecord
 
 		return new CActiveDataProvider($this, array(
             'criteria' => $this->ml->modifySearchCriteria($criteria),
+            'sort' => array(
+                'defaultOrder' => 'id DESC',
+            ),
         ));
 	}
 
