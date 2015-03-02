@@ -2,6 +2,9 @@
 
 <?php $form = $this->beginWidget('CActiveForm', array(
 	'id' => 'posts-form',
+	'htmlOptions'=> array(
+		'enctype' => 'multipart/form-data',
+	),
 	'enableAjaxValidation' => false,
 	'clientOptions' => array(
     	'validateOnSubmit' => true,
@@ -20,6 +23,22 @@
 		</div>
 	<?php endforeach; ?>
 
+	<?php foreach (DMultilangHelper::suffixList() as $suffix => $lang) : ?>
+        <div class="form-group">
+            <?php echo $form->labelEx($model, 'annotation'); ?> <?php echo $lang; ?><br />
+            <?php echo $form->textArea(
+                $model,
+                'annotation' . $suffix,
+                array(
+                    'rows' => 6,
+                    'cols' => 50,
+                    'class' => '',
+                )
+            ); ?>
+            <?php echo $form->error($model, 'annotation' . $suffix); ?>
+        </div>
+    <?php endforeach; ?>
+
 
 	<?php foreach (DMultilangHelper::suffixList() as $suffix => $lang) : ?>
 		<div class="form-group">
@@ -36,6 +55,34 @@
 			<?php echo $form->error($model, 'body' . $suffix); ?>
 		</div>
 	<?php endforeach; ?>
+
+	<?php if (!empty($model->image)) : ?>
+        <div class="form-group">
+            <img width=100 src="/uploads/<?=$model->image?>" alt="">
+        </div>
+    <?php endif; ?>
+
+    <div class="form-group">
+        <?php echo $form->labelEx($model,'image'); ?>
+        <?php echo $form->fileField($model,'image', array('class' => 'form-control input-large')); ?>
+        <?php echo $form->error($model,'image'); ?>
+    </div>
+
+    <?php foreach (DMultilangHelper::suffixList() as $suffix => $lang) : ?>
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'image_attr_title'); ?> <?php echo $lang; ?><br />
+            <?php echo $form->textField($model,'image_attr_title' . $suffix, array('class' => 'form-control input-large')); ?>
+            <?php echo $form->error($model,'image_attr_title' . $suffix); ?>
+        </div>
+    <?php endforeach; ?>
+
+    <?php foreach (DMultilangHelper::suffixList() as $suffix => $lang) : ?>
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'image_attr_alt'); ?> <?php echo $lang; ?><br />
+            <?php echo $form->textField($model,'image_attr_alt' . $suffix, array('class' => 'form-control input-large')); ?>
+            <?php echo $form->error($model,'image_attr_alt' . $suffix); ?>
+        </div>
+    <?php endforeach; ?>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'tagsString'); ?>

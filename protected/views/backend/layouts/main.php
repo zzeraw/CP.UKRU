@@ -106,7 +106,8 @@
                     {title: "Center", icon: "aligncenter", format: "aligncenter"},
                     {title: "Right", icon: "alignright", format: "alignright"},
                     {title: "Justify", icon: "alignjustify", format: "alignjustify"}
-                ]}
+                ]},
+                {title: 'Голубая рамка', block: 'div', classes: 'blue-border'},
             ],
 
             toolbar: "insertfile undo redo | forecolor backcolor | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image jbimages | code",

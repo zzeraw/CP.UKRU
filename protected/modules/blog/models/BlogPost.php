@@ -24,6 +24,8 @@
 class BlogPost extends BaseActiveRecord
 {
 	public $tagsString;
+    public $image_width = 800;
+    public $image_height = false;
 
 	/**
 	 * @return string the associated database table name
@@ -36,6 +38,18 @@ class BlogPost extends BaseActiveRecord
 	public function behaviors()
 	{
         return array(
+            'ImageBehavior' => array(
+                'class' => 'ImageBehavior',
+                // 'image_path' => ,
+                // 'image_field' => ,
+                'original_resize' => true,
+                'original_resize_width' => $this->image_width,
+                'original_resize_height' => false,
+                'thumb' => true,
+                'thumb_width' => 300,
+                'thumb_height' => false,
+                'original_image_filename' => 'blog_post_' . time(),
+            ),
             'DatetimeBehavior' => array(
                 'class' => 'DatetimeBehavior',
             ),
@@ -66,6 +80,8 @@ class BlogPost extends BaseActiveRecord
                     'title',
                     'annotation',
                     'body',
+                    'image_attr_title',
+                    'image_attr_alt',
                     'meta_title',
                     'meta_keywords',
                     'meta_description',
@@ -106,6 +122,27 @@ class BlogPost extends BaseActiveRecord
 				'length',
 				'max' => 300,
 			),
+            array(
+                'image_attr_title, image_attr_alt',
+                'length',
+                'max' => 300,
+            ),
+            array(
+                'image',
+                'file',
+                'maxSize' => 1048576 * 5,
+                'allowEmpty' => false,
+                'types'=>'jpg,jpeg,gif,png',
+                'on' => 'insert',
+            ),
+            array(
+                'image',
+                'file',
+                'maxSize' => 1048576 * 5,
+                'allowEmpty' => true,
+                'types'=>'jpg,jpeg,gif,png',
+                'on' => 'update',
+            ),
 			array(
 				'meta_keywords, meta_description',
 				'length',
@@ -117,7 +154,7 @@ class BlogPost extends BaseActiveRecord
 				'max' => 200,
 			),
 			array(
-				'body, tagsString, created_datetime, modified_datetime',
+				'image, annotation, body, tagsString, created_datetime, modified_datetime',
 				'safe',
 			),
 			// The following rule is used by search().
@@ -156,6 +193,9 @@ class BlogPost extends BaseActiveRecord
 			'id' => 'ID',
 			'title' => 'Title',
 			'body' => 'Body',
+            'image' => 'Image',
+            'image_attr_title' => 'Image Attr Title',
+            'image_attr_alt' => 'Image Attr Alt',
 			'meta_index' => 'Meta Index',
 			'meta_title' => 'Meta Title',
 			'meta_keywords' => 'Meta Keywords',
@@ -193,6 +233,9 @@ class BlogPost extends BaseActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('body',$this->body,true);
+        $criteria->compare('image',$this->image,true);
+        $criteria->compare('image_attr_title',$this->image_attr_title,true);
+        $criteria->compare('image_attr_alt',$this->image_attr_alt,true);
 		$criteria->compare('meta_index',$this->meta_index);
 		$criteria->compare('meta_title',$this->meta_title,true);
 		$criteria->compare('meta_keywords',$this->meta_keywords,true);

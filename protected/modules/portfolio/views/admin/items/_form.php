@@ -2,6 +2,9 @@
 
 <?php $form = $this->beginWidget('CActiveForm', array(
 	'id' => 'posts-form',
+    'htmlOptions'=> array(
+        'enctype' => 'multipart/form-data',
+    ),
 	'enableAjaxValidation' => false,
 	'clientOptions' => array(
     	'validateOnSubmit' => true,
